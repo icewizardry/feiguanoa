@@ -1,0 +1,500 @@
+{
+	"groups": [
+		{
+			"title": "信息管理",
+			"items": [
+				{
+					"key": "menu_inf_infomgr_tzgg",
+					"title": "通知公告",
+					"items": [
+						{
+							"key": "inf_infomgr_new_tzgg",
+							"title": "新增"
+						},
+						{
+							"key": "inf_infomgr_edit_tzgg",
+							"title": "编辑"
+						},
+						{
+							"key": "inf_infomgr_del_tzgg",
+							"title": "删除"
+						},
+						{
+							"key": "inf_infomgr_destroy_tzgg",
+							"title": "彻底删除"
+						},
+						{
+							"key": "inf_infomgr_shenpi_tzgg",
+							"title": "审核"
+						},
+						{
+							"key": "inf_infomgr_form_fb_tzgg",
+							"title": "发布"
+						},
+						{
+							"key": "inf_infomgr_qudao_tzgg",
+							"title": "渠道"
+						},
+						{
+							"key": "inf_infomgr_noselflimit_tzgg",
+							"title": "无自我限制"
+						},
+						{
+							"key": "inf_infomgr_nobmlimit_tzgg",
+							"title": "无部门限制"
+						}
+					]
+				},
+				{
+					"key": "menu_inf_infomgr_zwxx",
+					"title": "政务信息",
+					"items": [
+						{
+							"key": "inf_infomgr_new_zwxx",
+							"title": "新增"
+						},
+						{
+							"key": "inf_infomgr_edit_zwxx",
+							"title": "编辑"
+						},
+						{
+							"key": "inf_infomgr_del_zwxx",
+							"title": "删除"
+						},
+						{
+							"key": "inf_infomgr_destroy_zwxx",
+							"title": "彻底删除"
+						},
+						{
+							"key": "inf_infomgr_shenpi_zwxx",
+							"title": "审核"
+						},
+						{
+							"key": "inf_infomgr_shenpifb_zwxx",
+							"title": "审核直接发布"
+						},
+						{
+							"key": "inf_infomgr_form_fb_zwxx",
+							"title": "发布"
+						},
+						{
+							"key": "inf_infomgr_qudao_zwxx",
+							"title": "渠道"
+						},
+						{
+							"key": "inf_infomgr_noselflimit_zwxx",
+							"title": "无自我限制"
+						},
+						{
+							"key": "inf_infomgr_nobmlimit_zwxx",
+							"title": "无部门限制"
+						},
+						{
+							"key": "inf_infomgr_dtxx_zwxx",
+							"title": "党团"
+						}
+					]
+				},
+				{
+					"key": "menu_inf_infomgr_cyzl",
+					"title": "常用资料",
+					"items": [
+						{
+							"key": "inf_infomgr_new_cyzl",
+							"title": "新增"
+						},
+						{
+							"key": "inf_infomgr_edit_cyzl",
+							"title": "编辑"
+						},
+						{
+							"key": "inf_infomgr_del_cyzl",
+							"title": "删除"
+						},
+						{
+							"key": "inf_infomgr_destroy_cyzl",
+							"title": "彻底删除"
+						},
+						{
+							"key": "inf_infomgr_shenpi_cyzl",
+							"title": "审核"
+						},
+						{
+							"key": "inf_infomgr_form_fb_cyzl",
+							"title": "发布"
+						},
+						{
+							"key": "inf_infomgr_qudao_cyzl",
+							"title": "渠道"
+						},
+						{
+							"key": "inf_infomgr_noselflimit_cyzl",
+							"title": "无自我限制"
+						},
+						{
+							"key": "inf_infomgr_nobmlimit_cyzl",
+							"title": "无部门限制"
+						}
+					]
+				},
+				{
+					"key": "menu_inf_infomgr",
+					"title": "信息发布",
+					"items": [
+						{
+							"key": "inf_infomgr_new",
+							"title": "新增"
+						},
+						{
+							"key": "inf_infomgr_edit",
+							"title": "编辑"
+						},
+						{
+							"key": "inf_infomgr_del",
+							"title": "删除"
+						},
+						{
+							"key": "inf_infomgr_destroy",
+							"title": "彻底删除"
+						},
+						{
+							"key": "inf_infomgr_shenpi",
+							"title": "审核"
+						},
+						{
+							"key": "inf_infomgr_shenpifb",
+							"title": "审核直接发布"
+						},
+						{
+							"key": "inf_infomgr_form_fb",
+							"title": "发布"
+						},
+						{
+							"key": "inf_infomgr_qudao",
+							"title": "渠道"
+						},
+						{
+							"key": "inf_infomgr_noselflimit",
+							"title": "无自我限制"
+						},
+						{
+							"key": "inf_infomgr_nobmlimit",
+							"title": "无部门限制"
+						},
+						{
+							"key": "inf_infomgr_admin",
+							"title": "管理员"
+						}
+					]
+				},
+				{
+					"key": "menu_inf_report",
+					"title": "信息统计",
+					"items": []
+				}
+			]
+		},
+		{
+			"title": "考勤管理",
+			"items": [
+				{
+					"key": "menu_kq_qingjiadanmgr",
+					"title": "请假管理",
+					"items": [
+						{
+							"key": "kq_qingjiadanmgr_see",
+							"title": "查看"
+						},
+						{
+							"key": "kq_qingjiadanmgr_new",
+							"title": "新增"
+						},
+						{
+							"key": "kq_qingjiadanmgr_edit",
+							"title": "编辑"
+						},
+						{
+							"key": "kq_qingjiadanmgr_del",
+							"title": "删除"
+						},
+						{
+							"key": "kq_qingjiadanmgr_destroy",
+							"title": "彻底删除"
+						},
+						{
+							"key": "kq_qingjiadanmgr_shenpi",
+							"title": "审核"
+						},
+						{
+							"key": "kq_qingjiadanmgr_noselflimit",
+							"title": "无自我限制"
+						},
+						{
+							"key": "kq_qingjiadanmgr_admin",
+							"title": "管理员"
+						}
+					]
+				},
+				{
+					"key": "menu_kq_signinoutmgr",
+					"title": "签到签退",
+					"items": [
+						{
+							"key": "kq_signinoutmgr_see",
+							"title": "查看"
+						},
+						{
+							"key": "kq_signinoutmgr_new",
+							"title": "新增"
+						},
+						{
+							"key": "kq_signinoutmgr_edit",
+							"title": "编辑"
+						},
+						{
+							"key": "kq_signinoutmgr_del",
+							"title": "删除"
+						},
+						{
+							"key": "kq_signinoutmgr_sync",
+							"title": "同步"
+						},
+						{
+							"key": "kq_signinoutmgr_noselflimit",
+							"title": "无自我限制"
+						},
+						{
+							"key": "kq_signinoutmgr_nobmlimit",
+							"title": "无部门限制"
+						}
+					]
+				},
+				{
+					"key": "menu_kq_reportmgr",
+					"title": "考勤报表",
+					"items": [
+						{
+							"key": "kq_reportmgr_see",
+							"title": "查看"
+						},
+						{
+							"key": "kq_reportmgr_nobmlimit",
+							"title": "无部门限制"
+						},
+						{
+							"key": "kq_reportmgr_seeczs",
+							"title": "查看处长室"
+						},
+						{
+							"key": "kq_reportmgr_olddata",
+							"title": "看早期数据"
+						}
+					]
+				},
+				{
+					"key": "menu_kq_createreportmgr",
+					"title": "生成报表",
+					"items": []
+				},
+				{
+					"key": "menu_kq_jiabandanmgr",
+					"title": "值班管理",
+					"items": [
+						{
+							"key": "kq_jiabandanmgr_new",
+							"title": "新增"
+						},
+						{
+							"key": "kq_jiabandanmgr_edit",
+							"title": "编辑"
+						},
+						{
+							"key": "kq_jiabandanmgr_del",
+							"title": "删除"
+						},
+						{
+							"key": "kq_jiabandanmgr_destroy",
+							"title": "彻底删除"
+						},
+						{
+							"key": "kq_jiabandanmgr_shenpi",
+							"title": "审核"
+						},
+						{
+							"key": "kq_jiabandanmgr_jiashen",
+							"title": "加审"
+						},
+						{
+							"key": "kq_jiabandanmgr_dtgz",
+							"title": "党团工作"
+						},
+						{
+							"key": "kq_jiabandanmgr_noselflimit",
+							"title": "无自我限制"
+						},
+						{
+							"key": "kq_jiabandanmgr_admin",
+							"title": "管理员"
+						}
+					]
+				},
+				{
+					"key": "menu_kq_jiabanreportmgr",
+					"title": "值班报表",
+					"items": [
+					]
+				},
+				{
+					"key": "menu_kq_specialdaymgr",
+					"title": "特殊日",
+					"items": []
+				}
+			]
+		},
+		{
+			"title": "课题管理",
+			"items": [
+				{
+					"key": "menu_kt_ktsbmgr",
+					"title": "课题申报",
+					"items": [
+						{
+							"key": "kt_ktsbmgr_see",
+							"title": "查看"
+						},
+						{
+							"key": "kt_ktsbmgr_new",
+							"title": "新增"
+						},
+						{
+							"key": "kt_ktsbmgr_edit",
+							"title": "编辑"
+						},
+						{
+							"key": "kt_ktsbmgr_del",
+							"title": "删除"
+						},
+						{
+							"key": "kt_ktsbmgr_shenpi",
+							"title": "审核"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "基础数据",
+			"items": [
+				{
+					"key": "menu_usr_usermgr",
+					"title": "人员管理",
+					"items": [
+						{
+							"key": "usr_usermgr_see",
+							"title": "查看"
+						},
+						{
+							"key": "usr_usermgr_lizhi",
+							"title": "离职"
+						},
+						{
+							"key": "usr_usermgr_seePwd",
+							"title": "查看密码"
+						},
+						{
+							"key": "usr_usermgr_nobmlimit",
+							"title": "无部门限制"
+						}
+					]
+				},
+				{
+					"key": "menu_usr_rolemgr",
+					"title": "角色管理",
+					"items": []
+				},
+				{
+					"key": "menu_usr_zzjgmgr",
+					"title": "组织架构",
+					"items": []
+				},
+				{
+					"key": "menu_inf_sitectgmgr",
+					"title": "站点类目",
+					"items": [
+						{
+							"key": "inf_sitectgmgr_see",
+							"title": "查看"
+						},
+						{
+							"key": "inf_sitectgmgr_newSite",
+							"title": "新增站点"
+						},
+						{
+							"key": "inf_sitectgmgr_editSite",
+							"title": "编辑站点"
+						},
+						{
+							"key": "inf_sitectgmgr_delSite",
+							"title": "删除站点"
+						},
+						{
+							"key": "inf_sitectgmgr_newCtg",
+							"title": "新增类目"
+						},
+						{
+							"key": "inf_sitectgmgr_editCtg",
+							"title": "编辑类目"
+						},
+						{
+							"key": "inf_sitectgmgr_delCtg",
+							"title": "删除类目"
+						}]
+				}
+			]
+		},
+		{
+			"title": "系统管理",
+			"items": [
+				{
+					"key": "menu_sys_inmailmgr",
+					"title": "邮件",
+					"items": [
+						{
+							"key": "sys_inmailmgr_destroy",
+							"title": "彻底删除"
+						},
+						{
+							"key": "sys_inmailmgr_noselflimit",
+							"title": "无自我限制"
+						}
+					]
+				},
+				{
+					"key": "menu_sys_actlogmgr",
+					"title": "行为日志",
+					"items": []
+				},
+				{
+					"key": "menu_sys_devmgr",
+					"title": "开发助手",
+					"items": []
+				},
+				{
+					"key": "menu_sys_syscmdmgr",
+					"title": "指令处理",
+					"items": []
+				}
+			]
+		},
+		{
+			"title": "其他功能",
+			"items": [
+				{
+					"key": "menu_other_sjoasys",
+					"title": "市局OA系统",
+					"items": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>请登录</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<script src="?cmd=sys_101svc_getjs&tgt=jquery-1.x.x.min.js" type="text/javascript"></script>
+<script src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js" type="text/javascript"></script>
+<link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet" type="text/css" />
+<script src="?cmd=sys_101svc_getjs&tgt=CSJSV3UILoginForm.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="firstLoadingBar"
+		style="width: 100%; position: absolute; text-align: center;">
+		加载中，请稍后...</div>
+	<style>
+#firstLoadingBar {
+	background-color: White;
+	filter: alpha(opacity = 80);
+	-moz-opacity: 0.8;
+	-khtml-opacity: 0.8;
+	opacity: 0.8;
+	font-size: 30px;
+	color: Black;
+}
+
+body {
+	font-size: 12px;
+	margin: 0px;
+}
+</style>
+	<script>
+		function autoSizeFirstLoadingBar() {
+			$('#firstLoadingBar').height($(window).height());
+			$('#firstLoadingBar').css('line-height', $(window).height() + 'px');
+		}
+
+		autoSizeFirstLoadingBar();
+		$(window).resize(function() {
+			autoSizeFirstLoadingBar();
+		});
+	</script>
+	<!--加载主要内容-->
+	<script type='text/javascript'
+		src='?cmd=sys_101svc_getjs&tgt=CSCodingHEX.js'></script>
+	<div class="topArea" style="background-color: #0e59b0;">
+		<div class="topLabel_topLine"></div>
+		<div class="topLabel">智能综合管理平台</div>
+	</div>
+	<div class="middleLineArea"></div>
+	<div id="tpl_loginForm" style="">
+		<table class="mainArea" style="margin: auto;">
+			<tr>
+				<td>
+					<table class="inputArea">
+						<tr class="fieldArea">
+							<td class="icon"></td>
+							<td class="label">授权号：</td>
+							<td class="field"><input id="code" type="text"
+								autocomplete="off" style="width: 160px;" /></td>
+						</tr>
+						<tr style="height: 12px;">
+							<td colspan="3"></td>
+						</tr>
+						<tr class="fieldArea">
+							<td class="icon"><img id="unIcon" src="image/login_user.png" />
+							</td>
+							<td class="label">账号：</td>
+							<td class="field"><input id="un" type="text"
+								autocomplete="off" style="width: 160px;" /></td>
+						</tr>
+						<tr style="height: 12px;">
+							<td colspan="3"></td>
+						</tr>
+						<tr class="fieldArea">
+							<td class="icon"><img id="pwdIcon" src="image/login_pwd.png" />
+							</td>
+							<td class="label">密码：</td>
+							<td class="field"><input id="pwd" type="password"
+								autocomplete="new-password" style="width: 160px;" />
+							<!--autocomplete="off"--></td>
+						</tr>
+						<tr style="height: 36px;">
+							<td colspan="3">&nbsp;</td>
+						</tr>
+						<tr>
+							<td colspan="3" style="text-align: center; padding: 0px;"><input
+								type="button" value="登录" onclick="_loginForm.submitForm();"
+								class="csBtn1" /></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<input name="par3" type="hidden" />
+	</div>
+	<script type="text/javascript">
+		function onCSSuperShellReady() {
+			_loginForm.loadData();
+		}
+
+		var _world = new CSJSV3.UI.World({});
+		_world.addObject(_loginForm = new CSJSV3.UI.LoginFormA({reqCmd:'user_login',loginDoneUrl:'./index'}));
+		_world.ready(function(world) {
+			$('#firstLoadingBar').hide();
+
+			_loginForm.loadData();
+		});
+	</script>
+	<style>
+.csBtn1 {
+	border: groove 1px #cccccc;
+	background-color: #FFFBFF;
+	font-family: Verdana;
+	cursor: pointer;
+	font-size: 12px;
+	margin: 3px;
+	padding: 3px 12px 3px 12px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.topArea {
+	box-shadow: 0px 6px 8px 1px #888888;
+}
+
+.topLabel {
+	color: White;
+	font-size: 50px;
+	font-family: 微软雅黑;
+	margin: auto;
+	width: 500px;
+	text-align: center;
+	padding: 8px;
+	border: 3px solid white;
+}
+
+.icon {
+	color: Silver;
+	text-align: right;
+	border-top: 1px solid #dcdcdc;
+	border-left: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
+	padding-left: 12px;
+}
+
+.icon img {
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+}
+
+.label {
+	color: Silver;
+	text-align: right;
+	border-top: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
+	padding: 6px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.field {
+	color: Silver;
+	border-top: 1px solid #dcdcdc;
+	border-right: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
+	padding: 3px;
+	padding-left: 6px;
+}
+
+.field input {
+	border: 0px;
+	outline: none;
+	height: 26px;
+    background-image: unset;
+    filter: unset;
+    box-shadow: unset;
+}
+
+.icon_focus {
+	border-top: 1px solid #5da5e3;
+	border-left: 1px solid #5da5e3;
+	border-bottom: 1px solid #5da5e3;
+}
+
+.label_focus {
+	color: Black;
+	border-top: 1px solid #5da5e3;
+	border-bottom: 1px solid #5da5e3;
+}
+
+.field_focus {
+	color: Black;
+	border-top: 1px solid #5da5e3;
+	border-right: 1px solid #5da5e3;
+	border-bottom: 1px solid #5da5e3;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+.mainArea input[type=submit], .csBtn1 {
+	background-color: #005fcb;
+	border: 1px solid #005fcb;
+	color: White;
+	width: 196px;
+	line-height: 26px;
+	margin: 0px;
+	margin-left: 1px;
+	margin-right: 0px;
+}
+
+.mainArea input[type=submit]:hover, .csBtn1:hover {
+	background-color: #2272cd;
+	border: 1px solid #2272cd;
+}
+</style>
+</body>
+</html>

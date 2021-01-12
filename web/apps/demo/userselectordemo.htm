@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>废弃了，推荐看userselector1demo.htm</title>
+    <meta charset="utf-8" />
+    <script src="../../js/jq/jquery-1.x.x.min.js"></script>
+    <script src="../../js/jqui/js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+    <link href="../../js/jqui/css/smoothness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet"
+          type="text/css" />
+    <script src="../../js/jqui/jquery.ui.datepicker-zh-CN.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js" type="text/javascript"></script>
+    <link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet" type="text/css" />
+	<script src="../info/sitectgmgr_da.js" type="text/javascript"></script>
+	<script src="../info/sitectgmgr_form.js" type="text/javascript"></script>
+	<script src="../info/sitectgmgr.js" type="text/javascript"></script>
+	<script src="../com/userselector.js" type="text/javascript"></script>
+    <style>
+	    .CSJSV3UITabPanel .BodyArea {
+	        box-shadow: none;
+	    }
+    </style>
+</head>
+<body style="background-color: #EFF3F6;">
+	<div><input type="button" value="获取值" onclick="console.log(_userSelector1.value())" /><input type="button" value="设置值" onclick="_userSelector1.value(_data1)" /></div>
+	<div>单选：<input id="userSelectorBox" type="text" style="width:800px;" /></div>
+	<div>多选：<input id="usersSelectorBox" type="text" style="width:800px;" /></div>
+    <script>
+    </script>
+    <script>
+    	
+        function autosize() {
+
+        }
+        
+        function buildUserSelector(world) {
+        	var _userSelector1 = new CSJSV3.AUI.UserSelectorS1({
+            	onSelectComplete: function (item) {
+        			var t = {id:item.id,title:item.title};
+            		$('#userSelectorBox').val(JSON.stringify(t));
+            		_userSelectorWin.hide();
+            	}
+        	});
+        	_userSelector1.init(world);
+        	_userSelector1.render();
+        	
+        	var _userSelectorWin = new CSJSV3.UI.Win({title:'请选择', body:_userSelector1.getUICore(), width: 324, height: 'auto', closeBtnType: 'hide'});
+        	_userSelectorWin.init(world);
+        	_userSelectorWin.render();
+        	
+        	$('#userSelectorBox').focus(function() {
+            	_userSelector1.loadData();
+        		_userSelectorWin.show();
+        	});
+        }
+        
+        function buildUsersSelector(world) {
+        	var _userSelector1 = new CSJSV3.AUI.UserSelectorM1({
+            	onSelectComplete: function (items) {
+            		var arr = [];
+            		for(var i=0;i<items.length;i++) {
+            			if(items[i].level > 0 && items[i].children == null) {
+                			var item = {id:items[i].id,title:items[i].title};
+                			arr.push(item);
+            			}
+            		}
+            		$('#usersSelectorBox').val(JSON.stringify(arr));
+            		_userSelectorWin.hide();
+            	}
+        	});
+        	_userSelector1.init(world);
+        	_userSelector1.render();
+        	
+        	var _userSelectorWin = new CSJSV3.UI.Win({title:'请选择', body:_userSelector1.getUICore(), width: 324, height: 'auto', closeBtnType: 'hide'});
+        	_userSelectorWin.init(world);
+        	_userSelectorWin.render();
+        	
+        	$('#usersSelectorBox').focus(function() {
+            	_userSelector1.loadData();
+        		_userSelectorWin.show();
+        	});
+        }
+
+        var _world = new CSJSV3.UI.World({});
+
+        _world.ready(function (world) {
+        	
+        	
+        	buildUserSelector(world);
+        	buildUsersSelector(world);
+        	
+            autosize();
+            $(window).resize(function () {
+                autosize();
+            });
+        });
+    </script>
+</body>
+</html>

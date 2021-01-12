@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>通知公告</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<script src="?cmd=sys_101svc_getjs&tgt=jquery-1.x.x.min.js"
+	type="text/javascript"></script>
+<script src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js"
+	type="text/javascript"></script>
+<link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet"
+	type="text/css" />
+<script src="core/CSJSV3MUICore.js" type="text/javascript"></script>
+<link href="core/CSJSV3MUICore.css" rel="stylesheet" type="text/css" />
+<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<script src="tzgg.js" type="text/javascript"></script>
+<style>
+	.InfoListItem {
+		line-height: 50px;
+	}
+	.SplitLine {
+		height: 0px;
+		border-bottom:1px solid silver;
+		margin:auto;
+	}
+</style>
+</head>
+<body>
+	<div class="TitleArea"></div>
+	<div class="Title1Area"></div>
+	<script>
+		/* 信息内容页 */
+		CSJSV3.MUI.InfoCon = function(cfg) {
+			var _me = this;
+			var _uiCore;
+			var _data;
+			var _userMgr;
+			var _debug = false;
+
+			{
+				_uiCore = $('<div class="InfoArea"><div style="height:10px;">&nbsp;</div><div class="TitleArea"></div><div class="Title1Area"></div><div style="height:10px;">&nbsp;</div><div class="StateArea"></div><div style="height:30px;">&nbsp;</div><div class="ContentArea"></div></div>');
+				cfg.uiCore = _uiCore;
+				/* 继承父级 */
+				this.super0(this, new CSJSV3.MUI.BaseObject(cfg));
+			}
+
+			this.init = function(world) {
+				/* 继承父级 */
+				_me.base.init(world);
+
+				_userMgr = new CSJSV3.MUI.QYWXUserMgr({
+					appid:'ww12230cf33c3d8ed1', 
+					secret:'Hzl-eAEsOlnQwp7zFakz8pq4vYWHq8WJEUf_idyCQxU'
+				});
+				_userMgr.init(world);
+				if(world.com().isQYWeiXin()) {
+					_userMgr.ready1(function(self){
+						_me.loadData();
+					});
+				}
+				else {
+					_debug = true;
+					_me.loadData();
+				}
+			};
+
+			this.render = function() {
+				_me.base.render();
+				if(_data != null) {
+					_uiCore.find('.TitleArea').html(_data.title);
+					document.title = _data.title;
+					if(_data.title1 == '') {
+						_uiCore.find('.Title1Area').hide();
+					}
+					else {
+						_uiCore.find('.Title1Area').html(_data.title);
+					}
+					_uiCore.find('.StateArea').html('<div style="margin:auto;width:300px;">' + _me.com().toDateTimeStr(_data.crttime, true) + '&emsp;&emsp;&emsp;科室：' + _data.cuserbm + '</div><div style="margin:auto;width:300px;">发布人：' + _data.cusername + '&emsp;&emsp;&emsp;作者：' + _data.author + '</div><div style="clear:both;"></div>');
+					_uiCore.find('.ContentArea').html(_data.content);
+					
+					if(_data.needreadusers != null && _data.needreadusers != '') {
+						var area = $('<fieldset class="NoreadUsers"><legend>阅读人</legend><div class="BodyArea" style="display:none;"></div><div class="Label" style="text-align:center;"></div></fieldset>');
+						_uiCore.append(area);
+						var body = area.find('.BodyArea');
+						var label = area.find('.Label');
+
+						var hasReadCount = 0;
+						var needreadusers = [];
+						if(_data.needreadusers != '') {
+							needreadusers = JSON.parse(_data.needreadusers);
+						}
+						var hasreadusers = [];
+						if(_data.hasreadusers != '') {
+							hasreadusers = JSON.parse(_data.hasreadusers);
+						}
+						for(var i=0;i<needreadusers.length;i++) {
+							var cell = $('<div class="NoreadUser"></div>');
+							cell.html(needreadusers[i].title);
+							body.append(cell);
+							
+							for(var r=0;r<hasreadusers.length;r++) {
+								if(hasreadusers[r].id == needreadusers[i].id) {
+									cell.addClass('HasreadUser');
+									hasReadCount++;
+									break;
+								}
+							}
+						}
+						area.append('<div style="clear:both;"></div>');
+						
+						label.append('<a href="javascript:;">当前阅读情况' + hasReadCount + '/' + needreadusers.length + '，点击查看详细</a>');
+						label.find('a').click(function(){ body.show(); label.hide(); });
+					}
+					else {
+						_uiCore.append('<div style="height:30px;">&nbsp;</div>');
+					}
+				}
+				_me.resize();
+			};
+			
+			this.resize = function() {
+				_me.base.resize();
+				_uiCore.width($(window).width() - 10);
+			};
+			
+			this.loadData = function() {
+				_me.world().setLoading('加载中，请稍候');
+				var pars = {updType:'edit',id:_me.com().queryString('id')};
+				if(_debug) {
+					pars.debug = 1;
+				}
+				_me.reqByCmd('loadforread', pars, function(r) {
+					_me.world().setLoading(false);
+					if(r.success == false) {
+						_me.world().showErrorMsg(r.msg);
+					}
+					else {
+						_data = r.data;
+						_me.render();
+					}
+				}, _me.rootUrl() + 'api/info');
+			};
+		};
+		CSJSV3.MUI.InfoCon.prototype = new CSJSV3.SuperHelper();
+	</script>
+	<script>
+		var _view;
+
+		var _world = new CSJSV3.UI.World({});
+		_world.addObject(_view = new CSJSV3.MUI.View({
+			items: [
+				new CSJSV3.MUI.InfoCon({})
+			]
+		}));
+		_world.ready(function(world) {
+			//_world.setLoading('加载中');
+
+			setTimeout(function() {
+				_world.resize();
+			}, 100);
+		});
+	</script>
+	
+    <style>
+    	.InfoArea {
+    		margin: auto;
+    	}
+    	.TitleArea {
+    		margin: auto;
+    		text-align: center;
+    		font-family: "微软雅黑", "宋体";
+    		line-height: 60px;
+    		font-size: 23px;
+    	}
+    	.Title1Area {
+    		text-align: center;
+    		line-height: 23px;
+    		font-size: 14px;
+    	}
+    	.StateArea {
+    	    color: #333;
+    	    font-size: 14px;
+    		font-family: "宋体";
+    		margin: auto;
+    		text-align: center;
+    		line-height: 35px;
+    		border-bottom: 1px #dcdcdc solid;
+    	}
+    	.ContentArea {
+    		margin: auto;
+    		width: 300px;
+    	}
+    	.NoreadUsers {
+    		margin-top:30px;
+    		margin-bottom:12px;
+    	}
+    	.NoreadUser {
+    		float:left;
+    		border:1px solid silver;
+    		margin-left:8px;
+    		margin-top:6px;
+    		line-height: 28px;
+    		width:80px;
+    		text-align:center;
+    		color: silver;
+    		-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;
+    	}
+    	.HasreadUser {
+    		color: black;
+    	}
+    </style>
+</body>
+</html>

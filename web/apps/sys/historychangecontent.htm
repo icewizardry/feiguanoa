@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../../js/jq/jquery-1.x.x.min.js"></script>
+    <script src="../../js/jqui/js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+    <link href="../../js/jqui/css/smoothness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet"
+          type="text/css" />
+    <script src="../../js/jqui/jquery.ui.datepicker-zh-CN.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js" type="text/javascript"></script>
+    <link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet" type="text/css" />
+	<script>
+	</script>
+    <script>
+    	
+        function autosize() {
+        }
+
+        var _world = new CSJSV3.UI.World({});
+
+        _world.ready(function (world) {
+        	
+        	world.com().reqByCmd('loadhc', {id:world.com().queryString('id')}, function(r) {
+        		if(r.success == false) world.showErrorMsg(r.msg);
+        		else {
+            		$('.InfoArea').find('.ContentArea').html(r.data.content);
+        		}
+        	}, '../../api/sys');
+        	
+            autosize();
+            $(window).resize(function () {
+                autosize();
+            });
+        });
+    </script>
+    <style>
+    	.InfoArea {
+    		width: 640px;
+    		margin: auto;
+    	}
+    </style>
+</head>
+<body>
+    <div class="InfoArea"><div style="height:30px;">&nbsp;</div><div class="ContentArea"></div></div>
+</body>
+</html>

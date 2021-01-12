@@ -1,0 +1,50 @@
+
+.csBtn1
+{
+    border: groove 1px #cccccc;
+    background-color: #FFFBFF;
+    font-family: Verdana;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 3px;
+    padding: 3px 12px 3px 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.csBtn1:hover
+{
+    background-color: #F4F4F4;
+}
+
+.csBtn2
+{
+    border: groove 1px #cccccc;
+    background-color: #FFFBFF;
+    font-family: Verdana;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 3px;
+    padding: 6px 16px 6px 16px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.csBtn2:hover
+{
+    background-color: #F4F4F4;
+}
+
+.cs_up_btn1
+{
+    background-color: #006DBA;
+    border-radius: 6px;
+    color: #B7CDDC;
+    border: 0;
+    padding: 6px;
+    font-family: 微软雅黑;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+/*res view*/

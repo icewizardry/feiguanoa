@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../../js/jq/jquery-1.x.x.min.js"></script>
+    <script src="../../js/jqui/js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+    <link href="../../js/jqui/css/smoothness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet"
+          type="text/css" />
+    <script src="../../js/jqui/jquery.ui.datepicker-zh-CN.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js" type="text/javascript"></script>
+    <link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet" type="text/css" />
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3UIFileUploadA.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3UIEditorA.js" type="text/javascript"></script>
+    <script src="infomgr_da.js"></script>
+    <script src="infomgr.js"></script>
+	<script src="../info/sitectgmgr_da.js" type="text/javascript"></script>
+	<script src="../info/sitectgmgr_form.js" type="text/javascript"></script>
+	<script src="../info/sitectgmgr.js" type="text/javascript"></script>
+	<script src="../com/ctgsselector.js" type="text/javascript"></script>
+	<script src="../com/userselector1.js" type="text/javascript"></script>
+	<script>
+		$(document).contextmenu(function() {
+			return false;
+		});
+	</script>
+    <script>
+    	var _listMgrView;
+    	
+        function autosize() {
+        	_listMgrView.resize();
+        }
+        
+        function toedit(id) {
+        	_listMgrView.toEdit1(id);
+        }
+        
+        function loadData() {
+        	_listMgrView.loadData();
+        }
+        
+        function getRightPpdKey(key) {
+    		if(_world.com().queryString('ctgid') != '' && _world.com().queryString('ctgtitle') != '') {
+    			var ctgid = _world.com().queryString('ctgid');
+    			if(ctgid == 'ca7ef6a7-30d3-47fa-b7d3-d09c32937caa') {
+    				return key + '_tzgg';
+    			}
+    			else if(ctgid == '9a9b8792-fa53-4d4b-8c6c-7e4f8298c1f7') {
+    				return key + '_zwxx';
+    			}
+    			else if(ctgid == '83d3aa3f-d61f-4f59-bfc1-c8c410702d50') {
+    				return key + '_cyzl';
+    			}
+    		}
+        	return key;
+        }
+
+        var _world = new CSJSV3.UI.World({});
+
+        _world.ready(function (world) {
+        	_listMgrView = new CSJSV3.AUI.CurrentListMgrView({});
+        	_listMgrView.init(world);
+        	$(document.body).append(_listMgrView.getUICore());
+        	_listMgrView.render();
+        	
+            autosize();
+            $(window).resize(function () {
+                autosize();
+            });
+
+            _listMgrView.loadData();
+        });
+    </script>
+    <style>
+    	body {
+    		overflow:hidden;
+    	}
+    	
+    	.ListCellScrollView a {
+    		text-decoration: underline;
+    	}
+    	.HistoryChangeArea {
+    		font-size: 13px;
+    		position: absolute;
+    		left: 670px;
+    		top: 0px;
+    		width: 340px;
+    	}
+    	
+    	.HistoryChangeArea .ListBody {
+    		overflow: auto;
+    	}
+    	
+    	.HistoryChangeArea .ListItem {
+    		margin-top:6px;
+    		color:gray;
+    	}
+    	
+    	.HistoryChangeArea .ListItem .ListItemHead {
+    		line-height: 30px;
+    	}
+    	
+    	.HistoryChangeArea .ListItem .ListItemBody {
+    		padding-top:3px;
+    		padding-bottom:6px;
+    		padding-left:8px;
+    		padding-right:8px;
+    	}
+    	
+    	.HistoryChangeArea .ListItem .ListItemFoot {
+    		text-align:right;
+    		border-bottom: 1px solid silver;
+    		margin-bottom: 12px;
+    		padding-bottom: 6px;
+    		color:silver;
+    	}
+    	
+    	.HistoryChangeArea .PagerBar {
+    		font-size: 12px;
+    	}
+    	
+    	.ContentChangesArea {
+    		font-size: 13px;
+    		position: absolute;
+    		left: 670px;
+    		width: 340px;
+    	}
+    	
+    	.ContentChangesArea .ListBody {
+    		overflow: auto;
+    		height: 129px
+    	}
+    	
+    	.ContentChangesArea .ListBody {
+    		overflow: auto;
+    	}
+    	
+    	.ContentChangesArea .ListItem {
+    		margin-top:6px;
+    		color:gray;
+    	}
+    	
+    	.ContentChangesArea .ListItem .ListItemHead {
+    		line-height: 30px;
+    	}
+    	
+    	.ContentChangesArea .ListItem .ListItemBody {
+    		padding-top:3px;
+    		padding-bottom:6px;
+    		padding-left:8px;
+    		padding-right:8px;
+    	}
+    	
+    	.ContentChangesArea .ListItem .ListItemFoot {
+    		text-align:right;
+    		border-bottom: 1px solid silver;
+    		margin-bottom: 12px;
+    		padding-bottom: 6px;
+    		color:silver;
+    	}
+    </style>
+</head>
+<body style="background-color: #EFF3F6;">
+    <script>
+    </script>
+</body>
+</html>

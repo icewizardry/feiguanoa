@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>调试</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<script src="?cmd=sys_101svc_getjs&tgt=jquery-1.x.x.min.js"
+	type="text/javascript"></script>
+<script src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js"
+	type="text/javascript"></script>
+<link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet"
+	type="text/css" />
+<script src="core/CSJSV3MUICore.js" type="text/javascript"></script>
+<link href="core/CSJSV3MUICore.css" rel="stylesheet" type="text/css" />
+<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<style>
+</style>
+	<script>
+	</script>
+    <script>
+    	function toGetCode() {
+    		_qywx.toGetCode();
+    	}
+    	
+    	function getUserInfo() {
+    		var code = $('#code').html();
+    		if(code == '') {
+    			alert('请先获取授权code');
+    		}
+    		else {
+    			_qywx.getUserInfo(code, function(r) {
+    				log(JSON.stringify(r));
+    			});
+    		}
+    	}
+    	
+    	function logout() {
+			_world.com().reqByCmd('user_logout', {}, function(r) {
+				if(r.success==false){
+					_world.showErrorMsg(r.msg);
+				}
+				else {
+					_world.showInfoMsg('登出完毕');
+				}
+			}, '../../api/def');
+    	}
+
+    	function getAccessToken() {
+    		_qywx.getAccessToken(function(r){
+    			log(JSON.stringify(r));
+    		});
+    	}
+    	
+    	function test_authbyiframe() {
+    		var iframe = $('<iframe></iframe>');
+    		iframe.load(function(){
+    			alert(this.src);
+    		});
+    	}
+    	
+    	function log(msg) {
+    		$('#logArea').append('<div>' + msg + '</div>');
+    	}
+    	
+		var _qywx;
+
+		var _world = new CSJSV3.UI.World({});
+		_world.ready(function(world) {
+			_qywx = new CSJSV3.MUI.QiYeWeiXin({
+				appid:'ww12230cf33c3d8ed1', 
+				secret:'5xeat1AwSa50LxqDNr84vmdvS9exfF13hDISTB1DGMI',
+				//secret:'Hzl-eAEsOlnQwp7zFakz8pq4vYWHq8WJEUf_idyCQxU',
+			});
+			_qywx.init(world);
+			
+			$('#code').html(world.com().queryString('code'));
+		});
+    </script>
+</head>
+<body>
+	<a href="https://work.weixin.qq.com/wework_admin/frame#index" target="_blank">企业微信后台</a>
+	<a href="https://work.weixin.qq.com/api/doc#90000/90135/91022" target="_blank">企业微信API</a>
+	<div>授权code：<span id="code"></span></div>
+	<div>
+		<input type="button" value="授权并获取code" onclick="toGetCode()" />
+		<input type="button" value="获取用户信息" onclick="getUserInfo()" />
+		<input type="button" value="获取AccessToken（一般用不到）" onclick="getAccessToken()" />
+		<!-- <input type="button" value="通过iframe来获取授权code" onclick="test_authbyiframe()" /> -->
+		<input type="button" value="登出" onclick="logout()" />
+	</div>
+	<div id="logArea"></div>
+	<script>
+	</script>
+</body>
+</html>

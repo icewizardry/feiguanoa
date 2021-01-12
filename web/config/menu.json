@@ -1,0 +1,149 @@
+{
+	"groups": [
+		{
+			"title": "信息管理",
+			"items": [
+				{
+					"key": "menu_inf_infomgr_tzgg",
+					"title": "通知公告",
+					"body": "../apps/info/infomgr.htm?noleft=1&ctgid=ca7ef6a7-30d3-47fa-b7d3-d09c32937caa&ctgtitle=%e9%80%9a%e7%9f%a5%e5%85%ac%e5%91%8a",
+					"icon": ""
+				},
+				{
+					"key": "menu_inf_infomgr_zwxx",
+					"title": "政务信息",
+					"body": "../apps/info/infomgr.htm?noleft=1&ctgid=9a9b8792-fa53-4d4b-8c6c-7e4f8298c1f7&ctgtitle=%e6%94%bf%e5%8a%a1%e4%bf%a1%e6%81%af",
+					"icon": ""
+				},
+				{
+					"key": "menu_inf_infomgr_cyzl",
+					"title": "常用资料",
+					"body": "../apps/info/infomgr.htm?noleft=1&ctgid=83d3aa3f-d61f-4f59-bfc1-c8c410702d50&ctgtitle=%e5%b8%b8%e7%94%a8%e8%b5%84%e6%96%99",
+					"icon": ""
+				},
+				{
+					"key": "menu_inf_infomgr",
+					"title": "信息发布",
+					"body": "../apps/info/infomgr.htm",
+					"icon": ""
+				},
+				{
+					"key": "menu_inf_report",
+					"title": "信息统计",
+					"body": "../apps/info/reportamgr.htm",
+					"icon": ""
+				}
+			]
+		},
+		{
+			"title": "考勤管理",
+			"items": [
+				{
+					"key": "menu_kq_qingjiadanmgr",
+					"title": "请假管理",
+					"body": "../apps/kaoqin/qingjiadanmgr.htm",
+					"icon": ""
+				},
+				{
+					"key": "menu_kq_signinoutmgr",
+					"title": "签到签退",
+					"body": "../apps/kaoqin/signinoutmgr.htm",
+					"icon": ""
+				},
+				{
+					"key": "menu_kq_reportmgr",
+					"title": "考勤报表",
+					"body": "../apps/kaoqin/reportmgr.htm",
+					"icon": ""
+				},
+				{
+					"key": "menu_kq_jiabandanmgr",
+					"title": "值班管理",
+					"body": "../apps/kaoqin/jiabandanmgr.htm",
+					"icon": ""
+				},
+				{
+					"key": "menu_kq_jiabanreportmgr",
+					"title": "值班报表",
+					"body": "../apps/kaoqin/jiabanreportmgr.htm",
+					"icon": ""
+				},
+				{
+					"key": "menu_kq_createreportmgr",
+					"title": "生成报表",
+					"body": "../apps/kaoqin/createreportmgr.htm",
+					"icon": ""
+				},
+				{
+					"key": "menu_kq_specialdaymgr",
+					"title": "特殊日",
+					"body": "../apps/kaoqin/specialdaymgr.htm",
+					"icon": ""
+				}
+			]
+		},
+		{
+			"title": "课题管理",
+			"items": [
+				{
+					"key": "menu_kt_ktsbmgr",
+					"title": "课题申报",
+					"body": "../apps/keti/projectmgr.htm",
+					"icon": ""
+				}
+			]
+		},
+		{
+			"title": "基础数据",
+			"items": [
+				{
+					"key": "menu_usr_usermgr",
+					"title": "人员管理",
+					"body": "../apps/user/usermgr.htm",
+					"icon": ""
+				},
+				{
+					"key": "menu_usr_rolemgr",
+					"title": "角色管理",
+					"body": "../apps/user/rolemgr.htm",
+					"icon": ""
+				},
+				{
+					"key": "menu_usr_zzjgmgr",
+					"title": "组织架构",
+					"body": "../apps/user/zzjgmgr.htm",
+					"icon": ""
+				},
+				{
+					"key": "menu_inf_sitectgmgr",
+					"title": "站点类目",
+					"body": "../apps/info/sitectgmgr.htm",
+					"icon": ""
+				}
+			]
+		},
+		{
+			"title": "系统管理",
+			"items": [
+				{
+					"key": "menu_sys_actlogmgr",
+					"title": "行为日志",
+					"body": "../apps/sys/actlogmgr.htm",
+					"icon": ""
+				},
+				{
+					"key": "menu_sys_devmgr",
+					"title": "开发助手",
+					"body": "../apps/sys/devmgr.htm",
+					"icon": ""
+				},
+				{
+					"key": "menu_sys_syscmdmgr",
+					"title": "指令处理",
+					"body": "../apps/sys/syscmdmgr.htm",
+					"icon": ""
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../../js/jq/jquery-1.x.x.min.js"></script>
+    <script src="../../js/jqui/js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+    <link href="../../js/jqui/css/smoothness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet"
+          type="text/css" />
+    <script src="../../js/jqui/jquery.ui.datepicker-zh-CN.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js" type="text/javascript"></script>
+    <link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet" type="text/css" />
+    <script src="ppdmgr.js"></script>
+    <style>
+    	.PpdSetArea {
+    		float:left;
+    	}
+    </style>
+</head>
+<body style="background-color: #EFF3F6;">
+	<div>
+		<fieldset class="ActPpdArea PpdSetArea" style="width:300px;">
+			<legend>操作权限</legend>
+			<div class="Body" style="overflow:auto;"></div>
+			<div style="height:6px;">&nbsp;</div>
+			<div style="text-align:center;"><input type="button" value="保存" onclick="_actPpdMgr.saveData()" style="width:280px;" /></div>
+		</fieldset>
+		<fieldset class="CtgPpdArea PpdSetArea" style="width:300px;">
+			<legend>类目权限</legend>
+			<div class="Body" style="overflow:auto;"></div>
+			<div style="height:6px;">&nbsp;</div>
+			<div style="text-align:center;"><input type="button" value="保存" onclick="_ctgPpdMgr.saveData()" style="width:280px;" /></div>
+		</fieldset>
+	</div>
+    <script>
+    	var _tgtid;
+    	var _tgttype;
+    	var _actPpdMgr;
+    	var _ctgPpdMgr;
+    	
+        function autosize() {
+			$('.ActPpdArea').find('.Body').first().height($(window).height() - 92);
+			$('.CtgPpdArea').find('.Body').first().height($(window).height() - 92);
+        }
+
+        var _world = new CSJSV3.UI.World({});
+
+        _world.ready(function (world) {
+            _tgtid = _world.com().queryString('tgtid');
+            _tgttype = _world.com().queryString('tgttype');
+
+            _actPpdMgr = new CSJSV3.AUI.ActPpdMgr({tgtid:_tgtid,tgttype:_tgttype});
+            _actPpdMgr.init(world);
+            _actPpdMgr.render();
+            $('.ActPpdArea').find('.Body').append(_actPpdMgr.getUICore());
+
+            _ctgPpdMgr = new CSJSV3.AUI.CtgPpdMgr({tgtid:_tgtid,tgttype:_tgttype});
+            _ctgPpdMgr.init(world);
+            _ctgPpdMgr.render();
+            $('.CtgPpdArea').find('.Body').append(_ctgPpdMgr.getUICore());
+
+            world.setLoading(true);
+            _actPpdMgr.loadData(function() {
+                _ctgPpdMgr.loadData(function() {
+                    world.setLoading(false);
+                });
+            });
+            
+            autosize();
+            $(window).resize(function () {
+                autosize();
+            });
+        });
+    </script>
+</body>
+</html>

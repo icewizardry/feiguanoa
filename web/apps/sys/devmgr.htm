@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../../js/jq/jquery-1.x.x.min.js"></script>
+    <script src="../../js/jqui/js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+    <link href="../../js/jqui/css/smoothness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet"
+          type="text/css" />
+    <script src="../../js/jqui/jquery.ui.datepicker-zh-CN.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js" type="text/javascript"></script>
+    <link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet" type="text/css" />
+    <script src="devmgr.js"></script>
+</head>
+<body style="background-color: #EFF3F6;">
+	<fieldset id="div1">
+		<legend>功能1</legend>
+		<div>
+			<input type="button" value="清空资源缓存" onclick="_mgr.clearCloudRes()" />
+			&ensp;
+			<input type="button" value="清空资源缓存(新窗口)" onclick="_mgr.clearCloudResWithNewWin()" />
+			&ensp;
+			<input type="button" value="清空系统缓存" onclick="_mgr.clearCache()" />
+			&ensp;
+			<input type="button" value="备份数据库" onclick="_mgr.bakDB()" />
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>功能样例</legend>
+		<div>
+			<a href="../demo/upload.htm" target="_blank">文件上传</a>
+		</div>
+	</fieldset>
+    <script>
+    	var _mgr;
+    	
+        function autosize() {
+			$('.ActPpdArea').find('.Body').first().height($(window).height() - 92);
+        }
+
+        var _world = new CSJSV3.UI.World({});
+
+        _world.ready(function (world) {
+            _mgr = new CSJSV3.AUI.SysMgr({});
+            _mgr.init(world);
+            _mgr.render();
+            
+            autosize();
+            $(window).resize(function () {
+                autosize();
+            });
+        });
+    </script>
+</body>
+</html>

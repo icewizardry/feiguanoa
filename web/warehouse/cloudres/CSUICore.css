@@ -1,0 +1,116 @@
+body
+{
+    font: 14px/150% Arial,Verdana, "\5b8b\4f53";
+    background: #eff3f6;
+}
+
+fieldset
+{
+    background-color: White;
+    border: 0px;
+    box-shadow: 1px 1px 8px 1px #CACACA;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+fieldset input[type=text],input[type=password],textarea
+{
+    width: 100px;
+    line-height: 26px;
+    height: 26px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left: 6px;
+    border-radius: 3px; 
+    border: 1px solid silver;
+    color: Gray;
+    -moz-border-radius: 3px; 
+    -webkit-border-radius: 3px; 
+}
+.cs_ui_fieldset input[type=text],input[type=password],textarea
+{
+    width: 100px;
+    line-height: 26px;
+    height: 26px;
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-left: 6px;
+    border-radius: 3px; 
+    border: 1px solid silver;
+    color: Gray;
+    -moz-border-radius: 3px; 
+    -webkit-border-radius: 3px; 
+}
+
+fieldset select
+{
+    line-height: 28px;
+    height: 28px;
+    vertical-align: middle;
+    border: 1px solid silver;
+    color: Gray;
+    -moz-border-radius: 3px; 
+    -webkit-border-radius: 3px; 
+}
+.cs_ui_fieldset select
+{
+    line-height: 28px;
+    height: 28px;
+    vertical-align: middle;
+    border: 1px solid silver;
+    color: Gray;
+    -moz-border-radius: 3px; 
+    -webkit-border-radius: 3px; 
+}
+
+legend
+{
+    background-color: White;
+    padding: 1px 12px 1px 12px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    box-shadow: 1px 1px 3px 1px #CACACA;
+    color: Gray;
+}
+
+input[type=button],input[type=submit]
+{
+    padding: 3px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border: 1px solid transparent;
+    background-color: Gray;
+    color: #fff;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+    -moz-border-radius: 3.5px;
+    -webkit-border-radius: 3.5px;
+    box-shadow: 1px 1px 3px 1px #CACACA;
+}
+input[type=button]:hover,input[type=submit]:hover
+{
+    background-color: silver;
+    text-shadow: 0 -1px 1px gray;
+}
+
+.cs_ui_tmp_btn
+{
+    background-color: #696762;
+    color: White;
+    cursor: pointer;
+    padding-left: 12px;
+    padding-right: 12px;
+    text-align: center;
+    line-height: 30px;
+    height: 30px;
+    border: 0px;
+    vertical-align: middle;
+    margin: 3px;
+}
+.cs_ui_tmp_btn:hover
+{
+    background-color: #ACA48F;
+}
+/*res CSUI*/

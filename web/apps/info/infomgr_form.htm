@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../../js/jq/jquery-1.x.x.min.js"></script>
+    <script src="../../js/jqui/js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+    <link href="../../js/jqui/css/smoothness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet"
+          type="text/css" />
+    <script src="../../js/jqui/jquery.ui.datepicker-zh-CN.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js" type="text/javascript"></script>
+    <link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet" type="text/css" />
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3UIFileUploadA.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3UIEditorA.js" type="text/javascript"></script>
+    <script src="infomgr_da.js"></script>
+    <script src="infomgr_form.js"></script>
+	<script src="../info/sitectgmgr_da.js" type="text/javascript"></script>
+	<script src="../info/sitectgmgr_form.js" type="text/javascript"></script>
+	<script src="../info/sitectgmgr.js" type="text/javascript"></script>
+	<script src="../com/ctgselector.js" type="text/javascript"></script>
+	<script src="../com/userselector1.js" type="text/javascript"></script>
+	<script>/*
+		$(document).contextmenu(function() {
+			return false;
+		});*/
+	</script>
+    <style>
+    	body {
+    	}
+    	
+    	.CSJSV3UISubmitForm {
+    		width: 1150px;
+    		margin-top:16px;
+    		margin-bottom:16px;
+    	}
+    	
+    	.ListCellScrollView a {
+    		text-decoration: underline;
+    	}
+    	
+    	.HistoryChangeArea {
+    		font-size: 13px;
+    		position: absolute;
+    		left: 670px;
+    		top: 0px;
+    		width: 390px;
+    	}
+    	
+    	.HistoryChangeArea .ListBody {
+    		overflow: auto;
+    		height: 161px;
+    	}
+    	
+    	.HistoryChangeArea .ListItem {
+    		margin-top:6px;
+    		color:gray;
+    	}
+    	
+    	.HistoryChangeArea .ListItem .ListItemHead {
+    		line-height: 30px;
+    	}
+    	
+    	.HistoryChangeArea .ListItem .ListItemBody {
+    		padding-top:3px;
+    		padding-bottom:6px;
+    		padding-left:8px;
+    		padding-right:8px;
+    	}
+    	
+    	.HistoryChangeArea .ListItem .ListItemFoot {
+    		text-align:right;
+    		border-bottom: 1px solid silver;
+    		margin-bottom: 12px;
+    		padding-bottom: 6px;
+    		color:silver;
+    	}
+    	
+    	.HistoryChangeArea .PagerBar {
+    		font-size: 12px;
+    	}
+    	
+    	.ContentChangesArea {
+    		font-size: 13px;
+    		position: absolute;
+    		left: 670px;
+    		width: 390px;
+    	}
+    	
+    	.ContentChangesArea .ListBody {
+    		overflow: auto;
+    		height: 159px
+    	}
+    	
+    	.ContentChangesArea .ListBody {
+    		overflow: auto;
+    	}
+    	
+    	.ContentChangesArea .ListItem {
+    		margin-top:6px;
+    		color:gray;
+    	}
+    	
+    	.ContentChangesArea .ListItem .ListItemHead {
+    		line-height: 30px;
+    	}
+    	
+    	.ContentChangesArea .ListItem .ListItemBody {
+    		padding-top:3px;
+    		padding-bottom:6px;
+    		padding-left:8px;
+    		padding-right:8px;
+    	}
+    	
+    	.ContentChangesArea .ListItem .ListItemFoot {
+    		text-align:right;
+    		border-bottom: 1px solid silver;
+    		margin-bottom: 12px;
+    		padding-bottom: 6px;
+    		color:silver;
+    	}
+    </style>
+</head>
+<body style="background-color:white;">
+    <script>
+    	var _form;
+    	var _dataAgent;
+    	
+        function autosize() {
+        	_form.resize();
+        }
+        
+        function getRightPpdKey(key) {
+        	var lockctg = decodeURI(_world.com().queryString('lockctg'));
+    		if(lockctg != null && lockctg != '') {
+    			lockctg = JSON.parse(lockctg);
+    			var ctgid = lockctg.id;
+    			if(ctgid == 'ca7ef6a7-30d3-47fa-b7d3-d09c32937caa') {
+    				return key + '_tzgg';
+    			}
+    			else if(ctgid == '9a9b8792-fa53-4d4b-8c6c-7e4f8298c1f7') {
+    				return key + '_zwxx';
+    			}
+    			else if(ctgid == '83d3aa3f-d61f-4f59-bfc1-c8c410702d50') {
+    				return key + '_cyzl';
+    			}
+    		}
+        	return key;
+        }
+
+        var _world = new CSJSV3.UI.World({});
+
+        _world.ready(function (world) {
+        	
+        	var adt = world.com().queryString('adt');
+        	var id = world.com().queryString('id');
+        	var lockctg = decodeURI(world.com().queryString('lockctg'));
+        	if(lockctg != null && lockctg != '') {
+        		lockctg = JSON.parse(lockctg);
+        	}
+        	else {
+        		lockctg = null;
+        	}
+        	
+    		_dataAgent = new CSJSV3.AUI.DataAgent({});
+    		_dataAgent.init(world);
+    		
+        	_form = new CSJSV3.AUI.CurrentSubmitForm({
+    			dataAgent : _dataAgent,
+    			onSubmitDone : function() {
+    				
+    			},
+    			onReady: function() {
+    	        	if(id == '') {
+    	        		_form.showForNew(lockctg);
+    	        	}
+    	        	else {
+    	        		if(adt == '1') {
+        	        		_form.showForShenpi({id:id});
+    	        		}
+    	        		else {
+        	        		_form.showForEdit({id:id}, lockctg);
+    	        		}
+    	        	}
+    			}
+        	});
+        	_form.init(world);
+        	_form.render();
+        	
+        	if(world.com().queryString('needlockctg') == 1) {
+        		_form.needLockCtg(true);
+        	}
+        	
+            autosize();
+            $(window).resize(function () {
+                autosize();
+            });
+        });
+    </script>
+</body>
+</html>

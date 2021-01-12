@@ -1,0 +1,12 @@
+[
+{"key":"inputParErr", "value":"输入的参数不正确"},
+{"key":"loginFirstTip", "value":"请先登录"},
+{"key":"canntRemoveUser", "value":"不能删除此用户"},
+{"key":"unCanntNull", "value":"用户名不能为空"},
+{"key":"userHasLocked", "value":"用户已被锁定"},
+{"key":"u.um.ira-unPwdCanntNull", "value":"用户名和密码不能为空"},
+{"key":"u.um.ira-unPwdNotRight", "value":"用户名或密码不正确"},
+{"key":"oldPwdNotRight", "value":"原密码不正确"},
+{"key":"s.sm.iria-inputIsNullOrEmpty", "value":"传入的参数不能为空"},
+{"key":"s.sm.iria-hasIllegalStr", "value":"传入的参数包含了非法字符"}
+]

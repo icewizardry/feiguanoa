@@ -1,0 +1,333 @@
+
+CSJSV3.AUI.DataAgent = function(cfg) {
+	var _me = this;
+	var _reqSvrUrl = '../../api/inmail';
+
+	{
+		/* 继承父级 */
+		this.super0(this, new CSJSV3.UI.BaseObject(cfg));
+	}
+
+	this.init = function(world) {
+		/* 继承父级 */
+		_me.base.init(world);
+	};
+
+	this.reqSvrUrl = function() {
+		return _reqSvrUrl;
+	};
+
+	this.loadForm = function(pars, callback) {
+		_me.com().reqByCmd('loadform', pars, function(r) {
+			if (callback != null) {
+				callback(r);
+			}
+		}, _reqSvrUrl);
+	};
+
+	this.saveForm = function(pars, callback) {
+		_me.com().reqByCmd('saveform', pars, function(r) {
+			if (callback != null) {
+				callback(r);
+			}
+		}, _reqSvrUrl);
+	};
+};
+CSJSV3.AUI.DataAgent.prototype = new CSJSV3.SuperHelper();
+
+CSJSV3.MUI.MailFormView = function(cfg) {
+	var _me = this;
+	var _dataAgent;
+	var _saveBtn;
+	var _replyBtn;
+	var _mode;
+
+	{
+		_dataAgent = cfg.dataAgent;
+		cfg.updTypeFieldName = 'updType';
+		cfg.hiddenFields = [
+			{ label : 'id', name : 'id', value : '', canEmpty : true, canEmptyFor : '' },
+			{ label : 'crttime', name : 'crttime', value : '', canEmpty : false, canEmptyFor : '' },
+			{ label : 'fromuserid', name : 'fromuserid', value : '', canEmpty : false, canEmptyFor : '' },
+			{ label : 'fromuser', name : 'fromuser', value : '', canEmpty : false, canEmptyFor : '' },
+			{ label : 'touserids', name : 'touserids', value : '', canEmpty : false, canEmptyFor : '' },
+			{ label : 'ccuserids', name : 'ccuserids', value : '', canEmpty : true, canEmptyFor : '' },
+			{ label : 'hasreaduserids', name : 'hasreaduserids', value : '', canEmpty : true, canEmptyFor : '' },
+			{ label : 'readtime', name : 'readtime', value : '', canEmpty : true, canEmptyFor : '' },
+			{ label : 'flow', name : 'flow', value : '', canEmpty : false, canEmptyFor : '' },
+			{ label : 'hideuserids', name : 'hideuserids', value : '', canEmpty : true, canEmptyFor : '' }
+		];
+		cfg.style = '';
+		cfg.fieldLabelStyle = 'width:70px;';
+		cfg.rows = [ {
+			fields : [ {
+				label : '收信人',
+				type : 'custom',
+				name : 'tousers',
+				value : '',
+				canEmpty : false,
+				canEmptyFor : '',
+				style : '',
+				body: new CSJSV3.AUI.UsersSelector1Box({
+					inputStyle: 'width: 200px;',
+					onCheckDone:function(self, checkeds) {
+        				var str = '';
+        				if(checkeds != null && checkeds.length > 0) {
+        					for(var i=0;i < checkeds.length;i++) {
+        						if(i!=0) {
+        							str += ',';
+        						}
+        						str += checkeds[i].id;
+        					}
+        				}
+        				_me.findFieldByName('touserids').value(str);
+        			}
+				})
+			} ]
+		}, {
+			fields : [ {
+				label : '抄送人',
+				type : 'custom',
+				name : 'ccusers',
+				value : '',
+				canEmpty : true,
+				canEmptyFor : '',
+				style : '',
+				body: new CSJSV3.AUI.UsersSelector1Box({
+					inputStyle: 'width: 200px;',
+					onCheckDone:function(self, checkeds) {
+        				var str = '';
+        				if(checkeds != null && checkeds.length > 0) {
+        					for(var i=0;i < checkeds.length;i++) {
+        						if(i!=0) {
+        							str += ',';
+        						}
+        						str += checkeds[i].id;
+        					}
+        				}
+        				_me.findFieldByName('ccuserids').value(str);
+        			}
+				})
+			} ]
+		}, {
+			fields : [ {
+				label : '主题',
+				type : 'text',
+				name : 'title',
+				value : '',
+				canEmpty : false,
+				canEmptyFor : '',
+				style : 'width:200px;'
+			} ]
+		}, {
+			fields : [ 
+//				{
+//					label : '请假说明',
+//					type : 'textarea',
+//					name : 'content',
+//					value : '',
+//					canEmpty : false,
+//					canEmptyFor : '',
+//					style : 'width:510px;height:100px;margin-right:25px;'
+//				} 
+				{
+					label : '内容',
+					type : 'custom',
+					name : 'content',
+					value : '',
+					canEmpty : false,
+					canEmptyFor : '',
+					style : 'width:100%;height:500px;margin-right:25px;margin-top:8px;',
+					body: new CSJSV3.UI.EditorA({})
+				}
+			]
+		}];
+
+		cfg.onLoadData = function(self) {
+		};
+		cfg.onAppendBtnBefore = function(self, ctrlRow) {
+            //保存按钮
+            _saveBtn = $('<input type="button" class="SaveBtn CSJSV3UIBtn1" value="保存" style="margin-right:30px;" />');
+            _saveBtn.click(function() {
+            	self.findFieldByName('flow').value('101');
+            	self.submit();
+            });
+            ctrlRow.append(_saveBtn);
+            //回复按钮
+            _replyBtn = $('<input type="button" class="ReplyBtn CSJSV3UIBtn1" value="回复" style="margin-right:30px;" />');
+            _replyBtn.click(function() {
+            	_me.showForReply();
+            });
+            ctrlRow.append(_replyBtn);
+		};
+		cfg.onAppendBtnAfter = function(self, ctrlRow) {
+			ctrlRow.find('.SubmitBtn').val('发送');
+			ctrlRow.find('.CancelBtn').val('返回');
+		};
+		cfg.onSubmitBtnClick = function(self) {
+			_me.findFieldByName('flow').value(0);
+		};
+		cfg.onSubmit = function(self) {
+			_me.world().setLoading(true);
+			_dataAgent.saveForm(self.data(), function(r) {
+				_me.world().setLoading(false);
+				if (r.success == false) {
+					_me.world().showErrorMsg(r.msg);
+				} else {
+					if (cfg.onSubmitDone != null) {
+						cfg.onSubmitDone();
+					}
+				}
+			});
+		};
+		cfg.onCancel = function(self) {
+		};
+		/* 继承父级 */
+		this.super0(this, new CSJSV3.UI.SubmitForm(cfg));
+	}
+
+	this.init = function(world) {
+		/* 继承父级 */
+		_me.base.init(world);
+		_dataAgent.init(world);
+	};
+	
+	this.mode = function() {
+		return _mode;
+	};
+
+	this.showForNew = function() {
+		_mode = 'new';
+		_me.world().setLoading(true);
+		_me.hideAllBtns();
+		_me.showBtnByClass('SaveBtn');
+		_me.showBtnByClass('SubmitBtn');
+		_me.showBtnByClass('CancelBtn');
+		
+		for(var i=0;i<_me.fields().length;i++) {
+			_me.fields()[i].readonly(false);
+		}
+					
+		_dataAgent.loadForm({
+			updType : 'new'
+		}, function(r) {
+			_me.world().setLoading(false);
+			if (r.success == false) {
+				_me.world().showErrorMsg(r.msg);
+			} else {
+				_me.reset();
+				_me.data(r.data);
+			}
+		});
+	};
+
+	this.showForSee = function(selected) {
+		_mode = 'edit';
+		_me.world().setLoading(true);
+		_me.hideAllBtns();
+		_me.showBtnByClass('CancelBtn');
+		//
+		
+		_dataAgent.loadForm({
+			updType : 'edit',
+			id : selected.id
+		}, function(r) {
+			_me.world().setLoading(false);
+			if (r.success == false) {
+				_me.world().showErrorMsg(r.msg);
+			} else {
+				_me.reset();
+				_me.data(r.data);
+				
+				if(r.data.flow == '0') {
+					for(var i=0;i<_me.fields().length;i++) {
+						_me.fields()[i].readonly(true);
+					}
+					_me.showBtnByClass('ReplyBtn');
+				}
+				else if(r.data.flow == '101') {
+					_me.showBtnByClass('SaveBtn');
+					_me.showBtnByClass('SubmitBtn');
+				}
+				else {
+					for(var i=0;i<_me.fields().length;i++) {
+						_me.fields()[i].readonly(true);
+					}
+				}
+				
+			}
+		});
+	};
+
+	this.showForReply = function() {
+		_me.world().setLoading(true);
+		_me.hideAllBtns();
+		_me.showBtnByClass('SaveBtn');
+		_me.showBtnByClass('SubmitBtn');
+		_me.showBtnByClass('CancelBtn');
+		
+		_me.findFieldByName('id').value('');
+		_me.findFieldByName('updType').value('new');
+		
+		for(var i=0;i<_me.fields().length;i++) {
+			_me.fields()[i].readonly(false);
+		}
+		
+		setTimeout(function() {
+			
+			var fromuseridField = _me.findFieldByName('fromuserid');
+			var fromuserField = _me.findFieldByName('fromuser');
+			var touseridsField = _me.findFieldByName('touserids');
+			var tousersField = _me.findFieldByName('tousers');
+			//设置回复时的主题和内容
+			var contentField = _me.findFieldByName('content');
+			_me.findFieldByName('hideuserids').value('');
+			var str = '';
+			str += '<div><br/></div>';
+			str += '<div><br/></div>';
+			str += '<div>------------------ 原始邮件 ------------------</div>';
+			str += '<div style="background-color:#EFEFEF;padding-left:8px;">';
+			str += '<div>发件人：' + fromuserField.value() + '</div>';
+			str += '<div>发送时间：' + _me.findFieldByName('crttime').value() + '</div>';
+			str += '<div>收件人：' + _me.findFieldByName('tousers').text() + '</div>';
+			str += '<div>主题：' + _me.findFieldByName('title').value() + '</div>';
+			str += '</div>';
+			str += '<div style="height:20px;">&nbsp;</div>';
+			contentField.value(str + contentField.value() + "<div></div>");
+			
+			var titleField = _me.findFieldByName('title');
+			titleField.value("回复: " + titleField.value().replace('回复: ', ''));
+			
+			var arr = JSON.parse(tousersField.value());
+			//添加原发信人到收信人
+			if(touseridsField.value().indexOf(fromuseridField.value()) == -1) {
+				arr.push({id:fromuseridField.value(),title:fromuserField.value()});
+				tousersField.value(JSON.stringify(arr));
+			}
+			
+			//从收信人删除自己
+			for(var i=0;i < arr.length;i++) {
+				if(arr[i].id == _me.com().getWebTopObj().getMyAttr('uid')) {
+					arr.splice(i, 1);
+					break;
+				}
+			}
+			
+			var str = '';
+			for(var i=0;i < arr.length;i++) {
+				if(i!=0) {
+					str += ',';
+				}
+				str += arr[i].id;
+			}
+			touseridsField.value(str);
+			tousersField.value(JSON.stringify(arr));
+			
+			fromuseridField.value(_me.com().getWebTopObj().getMyAttr('uid'));
+			fromuserField.value(_me.com().getWebTopObj().getMyAttr('rn'));
+			
+			_me.world().setLoading(false);
+		}, 600);
+	};
+};
+CSJSV3.MUI.MailFormView.prototype = new CSJSV3.SuperHelper();

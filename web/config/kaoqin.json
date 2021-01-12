@@ -1,0 +1,14 @@
+{
+	"signintime": "09:10:00",
+	"signouttime": "16:50:00",
+	"cyclestart": "{preyearmonth}-26",
+	"cycleend": "{curyearmonth}-25",
+	"qingjiadan": {
+		"shenhe1maxdays": 1,
+		"shenhe2maxdays": 2.5,
+		"shiyou": {
+			"def": ["因公外出", "零星假", "公休", "调休", "事假", "病假", "婚假", "产检假", "产前假", "陪产假", "产假", "哺乳假", "计生假", "丧假", "探亲假", "献血假", "疗养假"]
+		},
+		"maxlxjcount": 3
+	}
+}

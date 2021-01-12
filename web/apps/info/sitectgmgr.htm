@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>类目管理</title>
+<script src="../../js/jq/jquery-1.x.x.min.js"></script>
+<script
+	src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js"
+	type="text/javascript"></script>
+<link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet"
+	type="text/css" />
+<script src="sitectgmgr_da.js" type="text/javascript"></script>
+<script src="sitectgmgr_form.js" type="text/javascript"></script>
+<script src="sitectgmgr.js" type="text/javascript"></script>
+<script>
+	$(document).contextmenu(function() {
+		return false;
+	});
+</script>
+<script>
+	var _siteCtgMgr;
+	
+	function autosize() {
+		$('.ActPpdArea').find('.Body').first().height($(window).height() - 35);
+	}
+	
+	var _world = new CSJSV3.UI.World({});
+	_world.ready(function(world) {
+		_siteCtgMgr = new CSJSV3.AUI.SiteCtgMgr({nolimit:1});
+		_siteCtgMgr.init(world);
+		_siteCtgMgr.render();
+        $('.ActPpdArea').find('.Body').append(_siteCtgMgr.getUICore());
+		
+        autosize();
+        $(window).resize(function () {
+            autosize();
+        });
+	});
+</script>
+<style>
+</style>
+</head>
+<body>
+	<div>
+		<fieldset class="ActPpdArea" style="width:400px;">
+			<div class="Body" style="overflow:auto;"></div>
+		</fieldset>
+	</div>
+</body>
+</html>

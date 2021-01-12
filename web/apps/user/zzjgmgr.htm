@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>组织架构</title>
+<script src="../../js/jq/jquery-1.x.x.min.js"></script>
+<script
+	src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js"
+	type="text/javascript"></script>
+<link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet"
+	type="text/css" />
+<script src="zzjgmgr.js" type="text/javascript"></script>
+<script src="zzjgmgr1.js" type="text/javascript"></script>
+<script src="zzjgmgr2.js" type="text/javascript"></script>
+<script>
+	$(document).contextmenu(function() {
+		return false;
+	});
+</script>
+<script>
+	var _zzjgMgr;
+	var _zzjgMgr1;
+	var _zzjgMgr2;
+	var _ctgSelector;
+	var _da;
+	var _pctgSelectorSelectedCallback;
+	var _bmusermapform;
+	
+	function autosize() {
+		$('.ZzjgShowArea').find('.Body').first().height($(window).height() - 55);
+		$('.ZzjgHideArea').find('.Body').first().height($(window).height() - 55);
+		$('.ZzjgAllArea').find('.Body').first().height($(window).height() - 55);
+		_zzjgMgr.resize();
+	}
+	
+	function showPCtgSelector(callback, noShowNodeIds) {
+		_pctgSelectorSelectedCallback = callback;
+		if(_ctgSelector == null) {
+			_ctgSelector = new CSJSV3.AUI.WinTreeSelectorA({
+                onSelected: function (self, node) {
+                	_pctgSelectorSelectedCallback(node);
+                    self.hide();
+                },
+                winCfg: { title: '请选择父级' },
+                treeCfg: {
+                    onLoadChild: function (node, nodeUI, callback) {
+                    	if(node.id == '') {
+                    		_da.listCtg({nolimit:1, hide:-1,pid:'',ptype:'bm',noshowids:JSON.stringify(noShowNodeIds)}, function(r) {
+                    			$(r.data).each(function(i, n) {
+                    				n.leaf = false;
+                    			});
+                    			callback(node, nodeUI, r.data);
+                    		});
+                    	}
+                    	else {
+                    		_da.listCtg({nolimit:1, hide:-1,pid:node.id,ptype:'bm',noshowids:JSON.stringify(noShowNodeIds)}, function(r) {
+                    			$(r.data).each(function(i, n) {
+                    				n.leaf = false;
+                    			});
+                    			callback(node, nodeUI, r.data);
+                    		});
+                    	}
+                    }
+                }
+            });
+			_ctgSelector.init(_world);
+			_ctgSelector.render();
+		}
+		_ctgSelector.show();
+		//_ctgSelector.loadData();
+	}
+	
+	function showBMPpdForm(callback, tree, node) {
+		if(_bmusermapform==null) {
+			_bmusermapform = new CSJSV3.AUI.BMUserMapSubmitForm({dataAgent: _da});
+			_bmusermapform.init(_world);
+			_bmusermapform.render();
+		}
+		_bmusermapform.showForEdit(tree, node);
+	}
+	
+	var _world = new CSJSV3.UI.World({});
+	_world.ready(function(world) {
+		_da = new CSJSV3.AUI.DataAgent({});
+		_da.init(world);
+		_da.render();
+		
+		_zzjgMgr = new CSJSV3.AUI.ZzjgMgr({dataAgent:_da});
+		_zzjgMgr.init(_world);
+		_zzjgMgr.render();
+        $('.ZzjgShowArea').find('.Body').append(_zzjgMgr.getUICore());
+
+		_zzjgMgr1 = new CSJSV3.AUI.ZzjgMgr({dataAgent:_da,treeHide:1});
+		_zzjgMgr1.init(_world);
+		_zzjgMgr1.render();
+        $('.ZzjgHideArea').find('.Body').append(_zzjgMgr1.getUICore());
+
+		_zzjgMgr2 = new CSJSV3.AUI.ZzjgMgr({dataAgent:_da,treeHide:-1});
+		_zzjgMgr2.init(_world);
+		_zzjgMgr2.render();
+        $('.ZzjgAllArea').find('.Body').append(_zzjgMgr2.getUICore());
+		
+        autosize();
+        $(window).resize(function () {
+            autosize();
+        });
+	});
+</script>
+<style>
+</style>
+</head>
+<body>
+	<div>
+		<fieldset class="ZzjgArea ZzjgShowArea" style="width:300px;">
+			<legend>显示</legend>
+			<div class="Body" style="overflow:auto;"></div>
+		</fieldset>
+		<fieldset class="ZzjgArea ZzjgHideArea" style="width:300px;">
+			<legend>隐藏</legend>
+			<div class="Body" style="overflow:auto;"></div>
+		</fieldset>
+		<fieldset class="ZzjgArea ZzjgAllArea" style="width:300px;">
+			<legend>所有</legend>
+			<div class="Body" style="overflow:auto;"></div>
+		</fieldset>
+		<div style="clear:both;"></div>
+	</div>
+	<style>
+		fieldset{
+			float:left;
+		}
+	</style>
+</body>
+</html>

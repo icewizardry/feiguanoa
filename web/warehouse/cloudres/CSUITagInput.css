@@ -1,0 +1,52 @@
+
+.cs_ui_tagInput_panel
+{
+    border-radius: 5px;
+    border: 1px solid #abadb3;
+}
+.cs_ui_tagInput_lable
+{
+    float: left;
+    margin: 6px 5px 0px 5px;
+    color: White;
+    background-color: #696762;
+    border-radius: 4px;
+}
+.cs_ui_tagInput_input
+{
+    float: left !important;
+    margin: 0px 0px 0px 3px !important;
+    padding: 0px !important;
+    border: 0 !important;
+    outline-style: none !important;
+    line-height: 33px !important;
+    height: 33px !important;
+}
+
+.cs_ui_tagInput_lable_t1
+{
+    float: left;
+    font-size: 12px;
+    font-family: simsun;
+    padding: 0px 0 0px 4px;
+    white-space: nowrap;
+    line-height: 20px;
+}
+.cs_ui_tagInput_lable_t2
+{
+    float: left;
+    font-size: 12px;
+    margin-left: 5px;
+    height: 100%;
+    background-color: #696762;
+    padding: 0 3px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    white-space: nowrap;
+    line-height: 20px;
+}
+.cs_ui_tagInput_lable_t2:hover
+{
+    background-color: #690762;
+}
+/*res CSUI*/

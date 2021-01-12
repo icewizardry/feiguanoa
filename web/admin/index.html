@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>内部综合管理平台</title>
+<script src="?cmd=sys_101svc_getjs&tgt=jquery-1.x.x.min.js,jquery.nicescroll.min.js"
+	type="text/javascript"></script>
+<script
+	src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js"
+	type="text/javascript"></script>
+<link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet"
+	type="text/css" />
+<script
+	src="?cmd=sys_101svc_getjs&tgt=jquery.rotate.js,CSJSV3UIViewportA.js"
+	type="text/javascript"></script>
+<link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UIViewportA.css"
+	rel="stylesheet" type="text/css" />
+<script src="index.js" type="text/javascript"></script>
+<script src="index_firstcmd.js" type="text/javascript"></script>
+<style>
+.CSJSV3UIViewportA_TopArea {
+	/*background-color: rgb(78, 166, 237);*/
+	background-color: #012da7;
+}
+
+.AccordionTitle {
+	color: #012da8 !important;
+}
+
+.CSJSV3UIAccordion {
+	background-color: white;
+}
+
+.CSJSV3UIAccordion .AccordionItem .ScrollView {
+	background-color: white;
+}
+
+.CSJSV3UIAccordion .SplitLine {
+	border-bottom: 0px !important;
+}
+
+.CSJSV3UIViewportA_LeftArea {
+	border-right: 1px solid #CACACA;
+	box-shadow: 0px 3px 6px 1px #CACACA;
+}
+
+.MessageFloatPanel {
+	display: none;
+	position: absolute;
+	background-color: white;
+	box-shadow: 0px 0px 6px 1px #CACACA;
+	width: 300px;
+	z-index: 999999;
+}
+
+.MessageFloatPanel .Point1 {
+	position: absolute;
+	background-color: white;
+	-webkit-border-radius: 16px;
+	-moz-border-radius: 16px;
+	-ms-border-radius: 16px;
+	-o-border-radius: 16px;
+	width: 16px;
+	height: 16px;
+	top: -8px;
+	left: 142px;
+	z-index: 999999;
+}
+
+.MessageFloatPanel .ListArea {
+	overflow: auto;
+	height: 400px;
+}
+
+.MessageFloatPanel .ListItem {
+	position: relative;
+	margin-top: 12px;
+	margin-bottom: 6px;
+	margin-left: 12px;
+	margin-right: 12px;
+	border-bottom: 1px solid silver;
+}
+
+.MessageFloatPanel .ListItem .TitleArea {
+	font-weight: bold;
+}
+
+.MessageFloatPanel .ListItem .BodyArea {
+	color: gray;
+}
+
+.MessageFloatPanel .ListItem .TimeArea {
+	color: silver;
+	text-align: right;
+}
+
+.MessageFloatPanel .ListItem .CloseBtn {
+	display: none;
+	position: absolute;
+	right: -3px;
+	width: 30px;
+	cursor: pointer;
+	box-shadow: 0px 0px 6px 1px #CACACA;
+	background-color: white;
+}
+</style>
+</head>
+<body>
+	<script>
+		var _pwdchangewin;
+		var _viewport;
+		var _viewportCfg;
+		var _msgFloatPanel;
+		//{ title: '客户管理', body: 'http://baidu.com' }
+		function addTab(item) {
+			return _viewport.addTab(item);
+		}
+		
+		function closeCurTab() {
+			_viewport.closeCurTab();
+		}
+		
+		function closeTabById(id) {
+			_viewport.closeTabById(id);
+		}
+		
+		function preSelectedTabId() {
+			return _viewport.preSelectedTabId();
+		}
+		
+		function findTabHeadById(id) {
+			return _viewport.findTabHeadById(id);
+		}
+		
+		function findTabBodyById(id) {
+			return _viewport.findTabBodyById(id);
+		}
+
+		function hasPpdKey(key) {
+			return _viewport.hasPpdKey(key);
+		}
+
+		function getMyAttr(name) {
+			return _viewport.getMyAttr(name);
+		}
+
+		function step0(callback) {
+			_viewportCfg = {
+				showHideLeftBarBtn: false,
+				showMaxScreenBtn: false,
+				logo : '',
+				loginedUser : {
+					icon : '',
+					rn : '',
+					un : '',
+					uid : '',
+					onLogout : function() {
+						_world.setLoading('登出中');
+						_world.com().reqByCmd('user_logout', {}, function(r) {
+							if (r.success == false) {
+								if(r.code == 'nologin') {
+									location.reload();
+								}
+								else {
+									_world.showErrorMsg(r.msg);
+								}
+							} else {
+								location.reload();
+							}
+						}, '../api/def');
+					},
+					menu : {
+						items : [ {
+							title : '修改密码',
+							onClick : function(e) {
+								_pwdchangewin.show();
+							}
+						} /*, {
+																			title : '个人中心',
+																			onClick : function(e) {
+																				alert('暂未开放');
+																			}
+																		}*/]
+					}
+				},
+				topMenu : {
+					items : [
+							{
+								id : 'msg_noread',
+								title : '消息',
+								icon : '{HomeUrl}/img/remind.png',
+								onClick : function() {
+									_msgFloatPanel.show($(this));
+								}
+							},
+							{
+								id : 'inmail_noread',
+								title : '邮件',
+								icon : '',//{HomeUrl}/img/mail.png
+								count : 0,
+								onClick : function() {
+									_world.com().getWebTopObj().addTab({
+										title : '邮件',
+										body : '../apps/sys/inmailmgr.htm?dsti=1'
+									});
+								}
+							},
+							{
+								id : 'info_noread',
+								title : '未读',
+								title1 : '未读信息',
+								icon : '',
+								count : 0,
+								onClick : function() {
+									_world
+											.com()
+											.getWebTopObj()
+											.addTab(
+													{
+														title : '未读信息',
+														body : '../apps/info/infomgr.htm?mode=see&noread=1'
+													});
+								}
+							},
+							{
+								id : 'info_shenpi',
+								title : '信息',
+								title1 : '待审信息',
+								ppdkey: 'inf_infomgr_shenpi',
+								icon : '',
+								count : 0,
+								onClick : function() {
+									_world
+											.com()
+											.getWebTopObj()
+											.addTab(
+													{
+														title : '待审信息',
+														body : '../apps/info/infomgr.htm?shenpi=1'
+													});
+								}
+							},
+							{
+								id : 'qingjiadan_shenpi',
+								title : '请假',
+								title1 : '待审请假',
+								ppdkey: 'kq_qingjiadanmgr_shenpi',
+								icon : '',
+								count : 0,
+								onClick : function() {
+									_world
+											.com()
+											.getWebTopObj()
+											.addTab(
+													{
+														title : '待审请假',
+														body : '../apps/kaoqin/qingjiadanmgr.htm'
+													});
+								}
+							}, {
+								id : 'jiabandan_shenpi',
+								title : '值班',
+								title1 : '待审值班',
+								ppdkey: 'kq_jiabandanmgr_shenpi',
+								icon : '',
+								count : 0,
+								onClick : function() {
+									_world
+									.com()
+									.getWebTopObj()
+									.addTab(
+											{
+												title : '待审值班',
+												body : '../apps/kaoqin/jiabandanmgr.htm'
+											});
+								}
+							}, {
+								id : 'keti_shenpi',
+								title : '课题',
+								title1 : '待审课题',
+								ppdkey: 'kt_ktsbmgr_shenpi',
+								icon : '',
+								count : 0,
+								onClick : function() {
+								}
+							}, {
+								id : 'other_sjoasys',
+								title : '市局OA系统',
+								title1 : '',
+								ppdkey: 'menu_other_sjoasys',
+								icon : '',
+								count : 0,
+								onClick : function() {
+									window.open('http://10.85.31.137');
+								}
+							} ]
+				},
+				leftMenu : {
+					home : {
+						title : '主页',
+						body : '../apps/home/index.htm',
+						bodyType : 'url',
+						closeable : false
+					},
+					items : [ {
+						title : '业务管理',
+						items : [ {
+							title : '客户管理',
+							body : 'http://baidu.com'
+						}, {
+							title : '订单管理',
+							body : 'http://bing.com'
+						} ]
+					}, {
+						title : '基本数据',
+						items : [ {
+							title : '类目管理'
+						}, {
+							title : '角色管理'
+						} ]
+					}, {
+						title : '系统管理',
+						items : [ {
+							title : '后台配置'
+						}, {
+							title : '系统内核'
+						} ]
+					} ]
+				},
+				myPpdKeys : [],
+				onChange: function(self) {
+					$(".CSJSV3UIAccordion").getNiceScroll().resize();
+				},
+				onTopBtnCountChange : function(self, id, count) {
+					if (id == 'msg_noread') {
+						_msgFloatPanel.loadData();
+					}
+				}
+			};
+
+			step1(callback);
+		}
+
+		function step1(callback) {
+			_world.com().reqByCmd('user_getloginstate', {}, function(r) {
+				if (r.success == true) {
+					for(var prop in r.data.account) {
+						_viewportCfg.loginedUser[prop] = r.data.account[prop];
+					}
+					/*
+					_viewportCfg.loginedUser.rn = r.data.account.rn;
+					_viewportCfg.loginedUser.un = r.data.account.un;
+					_viewportCfg.loginedUser.uid = r.data.account.uid;
+					_viewportCfg.loginedUser.sac = r.data.account.sac;
+					_viewportCfg.loginedUser.dep = r.data.account.dep;*/
+					_viewportCfg.myPpdKeys = r.data.ppdKeys;
+					step2(callback);
+				} else {
+					_world.setLoading(false);
+					_world.showErrorMsg(r.msg);
+				}
+			}, '../api/def');
+		}
+
+		function step2(callback) {
+			_world
+					.com()
+					.reqByCmd(
+							'sys_leftmenu',
+							{},
+							function(r) {
+								if (r.success == true) {
+									_viewportCfg.leftMenu.items = r.data.menuGroups1;
+									_world
+											.addObject(_viewport = new CSJSV3.UI.ViewportA(
+													_viewportCfg));
+									_world.ready(function(world) {
+									});
+									if (callback != null) {
+										callback();
+									}
+								} else {
+									_world.setLoading(false);
+									_world.showErrorMsg(r.msg);
+								}
+							}, '../api/def');
+		}
+
+		function startCycleThread() {
+			_world
+					.com()
+					.reqByCmd(
+							"keepconn",
+							{},
+							function(r) {
+								if (r.success == false) {
+									if(r.code == 'nologin') {
+										_world.showInfoMsg('会话已超时，请重新登录', function(){ location.reload(); }, false);
+									}
+									else {
+										_world.log(r.msg);
+										setTimeout(function() {
+											startCycleThread();
+										}, 3000);
+									}
+								} else {
+									try {
+										if (r.data.remindItems.length > 0) {
+											for (var i = 0; i < r.data.remindItems.length; i++) {
+												_viewport
+														.setTopBtnCountById(
+																r.data.remindItems[i].key,
+																r.data.remindItems[i].count);
+											}
+										}
+									} catch (exc) {
+										_world.log(exc.message);
+									}
+									setTimeout(function() {
+										startCycleThread();
+									}, 6000);
+								}
+							}, '../api/sys');
+		}
+		
+		function onAllStepDone(world) {
+			startCycleThread();
+			$(".CSJSV3UIAccordion").niceScroll({ cursorcolor: "#ccc", autohidemode: false });
+			_execFirstCmds(world);
+		}
+
+		var _world = new CSJSV3.UI.World({});
+		_world.ready(function(world) {
+			_world.setLoading('加载中');
+
+			_pwdchangewin = new CSJSV3.AUI.PasswordChangeWin({
+				width : 300,
+				height : 200
+			});
+			_pwdchangewin.init(world);
+			_pwdchangewin.render();
+
+			_msgFloatPanel = new CSJSV3.AUI.MessageFloatPanel({});
+			_msgFloatPanel.init(world);
+			_msgFloatPanel.render();
+			$(document.body).append(_msgFloatPanel.getUICore());
+
+			step0(function() {
+				// 顶部菜单权限控制
+				for(var i=0; i < _viewport.cfg().topMenu.items.length; i++) {
+					var item = _viewport.cfg().topMenu.items[i];
+					if(item.ppdkey != null && item.ppdkey != '' && !hasPpdKey(item.ppdkey)) {
+						_viewport.hideTopBtnById(item.id);
+					}
+				}
+				
+				onAllStepDone(world);
+			});
+		});
+	</script>
+</body>
+</html>

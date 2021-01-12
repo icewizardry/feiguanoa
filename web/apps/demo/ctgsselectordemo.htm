@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>类目多选</title>
+    <meta charset="utf-8" />
+    <script src="../../js/jq/jquery-1.x.x.min.js"></script>
+    <script src="../../js/jqui/js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+    <link href="../../js/jqui/css/smoothness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet"
+          type="text/css" />
+    <script src="../../js/jqui/jquery.ui.datepicker-zh-CN.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js" type="text/javascript"></script>
+    <link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet" type="text/css" />
+	<script src="../info/sitectgmgr_da.js" type="text/javascript"></script>
+	<script src="../info/sitectgmgr_form.js" type="text/javascript"></script>
+	<script src="../info/sitectgmgr.js" type="text/javascript"></script>
+	<script src="../com/ctgsselector.js" type="text/javascript"></script>
+    <style>
+	    .CSJSV3UITabPanel .BodyArea {
+	        box-shadow: none;
+	    }
+    </style>
+</head>
+<body style="background-color: #EFF3F6;">
+	<div><input type="button" value="获取值" onclick="console.log(_ctgsSelector1.value())" /><input type="button" value="设置值" onclick="_ctgsSelector1.value(_data1)" /></div>
+    <script>
+    </script>
+    <script>
+    	var _data1 = '[{"id":"1","title":"上海"},{"id":"2","title":"背景"}]';
+    	var _ctgsSelector1;
+    	
+        function autosize() {
+
+        }
+
+        var _world = new CSJSV3.UI.World({});
+
+        _world.ready(function (world) {
+        	_ctgsSelector1 = new CSJSV3.AUI.CtgsSelector({});
+        	_ctgsSelector1.init(_world);
+        	_ctgsSelector1.render();
+        	$(document.body).append(_ctgsSelector1.getUICore());
+        	
+            autosize();
+            $(window).resize(function () {
+                autosize();
+            });
+        });
+    </script>
+</body>
+</html>

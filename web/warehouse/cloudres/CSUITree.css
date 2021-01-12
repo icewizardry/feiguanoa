@@ -1,0 +1,147 @@
+.cs_ui_tree_panel
+{
+    font: 12px/150% Arial,Verdana, "\5b8b\4f53";
+}
+.cs_ui_tree_item
+{
+    line-height: 20px;
+}
+.cs_ui_tree_item .cs_ui_tree_children
+{
+}
+.cs_ui_tree_item_hidden
+{
+}
+.cs_ui_tree_item_selected
+{
+}
+.cs_ui_tree_item_selected_firstDiv
+{
+    background-color: #DFE8F6;
+}
+
+.cs_ui_tree_item_head
+{
+    padding-left: 6px;
+}
+.cs_ui_tree_item_head table
+{
+    border: 0;
+    margin: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.cs_ui_tree_item_prefix
+{
+    border: 0px;
+    padding: 0px;
+    height: 22px;
+    vertical-align: top;
+}
+.cs_ui_tree_item_prefix_1
+{
+    float: left;
+    width: 7px;
+    margin-left: 6px;
+    border-left: 1px dashed silver;
+    line-height: 20px;
+    height: 20px;
+}
+.cs_ui_tree_item_prefix_2
+{
+    position: relative;
+    float: left;
+    width: 7px;
+    margin-left: 6px;
+    margin-top: -2px;
+    border-left: 1px dashed silver;
+    border-bottom: 1px dashed silver;
+    height: 12px;
+}
+.cs_ui_tree_item_prefix_2_1
+{
+    position: absolute;
+    width: 7px;
+    left: -1px;
+    bottom: -11px;
+    border-left: 1px dashed silver;
+    border-top: 0px;
+    height: 7px;
+}
+.cs_ui_tree_item_prefix_3
+{
+    float: left;
+    width: 7px;
+    margin-left: 6px;
+    border-left: 0;
+    border-bottom: 1px dashed silver;
+    line-height: 10px;
+    height: 10px;
+}
+.cs_ui_tree_item_prefix_4
+{
+    float: left;
+    width: 7px;
+    margin-left: 6px;
+    border-left: 0;
+    border-bottom: 0;
+    line-height: 10px;
+    height: 10px;
+}
+.cs_ui_tree_item_prefix_clickArea
+{
+    float: left;
+}
+.cs_ui_tree_item_icon
+{
+    padding: 0px;
+}
+.cs_ui_tree_item_checkedBtn
+{
+    padding-top: 1px;
+}
+.cs_ui_tree_item_checkedBtn input[type="checkbox"]
+{
+    margin-left: 3px;
+    vertical-align: middle;
+}
+.cs_ui_tree_item_btn
+{
+    font-family: Microsoft YaHei UI;
+    border: 0; 
+    background-color: transparent;
+    text-align: center;
+    width: 14px;
+    height: 10px;
+    line-height: 10px;
+    margin-top: 0px;
+    cursor: pointer;
+    color: gray;
+    position: relative;
+    height: 22px;
+    line-height: 22px;
+}
+.cs_ui_tree_item_btn img
+{
+    vertical-align: middle;
+    position: absolute;
+    top: 0px;
+    left: -2px;
+}
+.cs_ui_tree_item_title
+{
+    float: left;
+    padding-left: 3px;
+    padding-right: 3px;
+    cursor: pointer;
+    white-space: nowrap;
+    max-width: 160px; 
+}
+.cs_ui_tree_item_title:hover
+{
+    color: Red;
+}
+.cs_ui_tree_item_title_selected
+{
+}
+/*res CSUI*/

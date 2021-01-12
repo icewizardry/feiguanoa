@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <!--这个必需为edge，否则不能在客户端黏贴截图-->
+    <!--<meta http-equiv='X-UA-Compatible' content='IE=edge;' />-->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="../../JS/jq/jquery-1.11.2.min.js"></script>
+    <script src="../../Plugins/CSEditor/res/js/CSEditorAgent.js" type="text/javascript"></script>
+</head>
+<body>
+    <div style="width: 100%;">
+        <iframe id="csEditorIf1" scrolling="no" frameborder="0" style="width: 100%; height: 300px;
+            border: 0px; border: 1px solid silver;"></iframe>
+    </div>
+    <script>
+        window.csEditor1 = new CSEditorAgent({
+            tgtId: 'csEditorIf1',
+            editorUrl: 'res/editor_test.htm',
+            /*能否编辑*/
+            enableEdit: true,
+            /*菜单栏*/
+//            menuBarItems: [
+//                { key: 'Bold' },
+//                { key: 'Italic' },
+//                { key: 'Underline' },
+//                { key: 'StrikeThrough' },
+//                { key: 'InsertImage' },
+//                { key: 'Attachment' },
+//                { key: 'ForeColor' },
+//                { key: 'BackColor' }
+//                ],
+            onLoadedAction: function (self, window) {
+                csTgt1 = self.getTgt();
+                //csEditor1 = csea1.getEditor();
+                try { console.log('编辑器1准备完毕'); } catch (exc) { }
+
+                csTgt1.contentWindow.setEditorHTML('Hello World http://baidu.com <img src="https://p0.ifengimg.com/2019_19/6F48F1F8DB4978CCE9486EB3254E625119984AA5_w667_h373.png" /> <video id="media" src="http://www.sundxs.com/test.mp4" controls width="400px" heigt="400px"></video>')
+            },
+            onContentChangedAction: function () {
+                console.log('内容发生改变');
+            }
+        });
+        window.csEditor1.build();
+    </script>
+    <p>
+        <div>
+            功能样例</div>
+        <input id="Button5" type="button" value="光标聚焦" onclick="csTgt1.contentWindow.csEditor1Js.focus();" />
+        <input id="Button1" type="button" value="获得HTML内容" onclick="alert(csTgt1.contentWindow.getEditorHTML())" />
+        <input id="Button2" type="button" value="设置HTML内容" onclick="csTgt1.contentWindow.setEditorHTML('<strong>Hello World</strong><br/><a href=\'http://www.ovinfo.com\'>网页</a>')" />
+        <input id="Button4" type="button" value="插入内容" onclick="csTgt1.contentWindow.insertHTMLToEditor('<div style=\'color:Red;\'>注意：插入时外层一定要有个<strong>div</strong></div>')" />
+        <input id="Button6" type="button" value="插入内容2" onclick="csTgt1.contentWindow.insertHTMLToEditor('<span>123abc</span>')" />
+        <!--<input id="Button6" type="button" value="设为不可编辑模式" onclick="window.csEditor1.getEditor().enableEdit(false)" />无法动态设置是否能够编辑-->
+    </p>
+    <p>
+        <div>
+            环境模拟</div>
+        <input id="Button3" type="button" value="更改高度" onclick="csTgt1.style.height=(parseInt(csTgt1.style.height.replace('px',''))+30)+'px';" />
+    </p>
+    <div style="width: 100%;">
+        <iframe id="csEditorIf2" scrolling="no" frameborder="0"
+            style="width: 100%; height: 100px; border: 0px; border: 1px solid silver;"></iframe>
+        <script>
+            new CSEditorAgent({
+                tgtId: 'csEditorIf2',
+                editorUrl: 'res/editor_test.htm',
+                /*能否编辑*/
+                enableEdit: true,
+                /*菜单栏*/
+                menuBarItems: [
+                { key: 'Bold' },
+                { key: 'Italic' },
+                { key: 'Underline' }
+                ],
+                onLoadedAction: function (self, window) {
+                    csTgt2 = self.getTgt();
+                    //csEditor2 = self.getEditor();
+                    try { console.log('编辑器2准备完毕'); } catch (exc) { }
+
+                    csTgt2.contentWindow.setEditorHTML('Hello World');
+                    //csTgt2.contentWindow.setEditorHTML('&nbsp;');
+                },
+                onContentChangedAction: function () {
+                    console.log('内容发生改变');
+                }
+            }).build();
+        </script>
+    </div>
+
+    <script>
+        function getBrowserInfo() {
+            var html = '';
+            html += '类型：' + navigator.appName + '<br/>';
+            html += '版本：' + navigator.appVersion + '<br/>';
+            html += '其它：' + navigator.userAgent + '<br/>';
+
+            return html;
+        }
+
+        document.write(getBrowserInfo());
+    </script>
+</body>
+</html>

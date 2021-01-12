@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <listener>
+    <listener-class>com.csaui5.ContextListener</listener-class>
+  </listener>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>testServlet1</servlet-name>
+    <url-pattern>/test1</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>testServlet1</servlet-name>
+    <servlet-class>tmp.test.Servlet1</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>defServlet</servlet-name>
+    <url-pattern>/admin/handler.ashx</url-pattern>
+    <url-pattern>/api/def</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>defServlet</servlet-name>
+    <servlet-class>com.csaui5.handler.DefServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>allServlet</servlet-name>
+    <url-pattern>/admin/</url-pattern>
+    <url-pattern>/admin/index</url-pattern>
+    <url-pattern>/admin/login</url-pattern>
+    <url-pattern>/apps/*</url-pattern>
+    <url-pattern>/api/cloudres</url-pattern>
+    <url-pattern>/config/*</url-pattern>
+    <url-pattern>/plugins/cseditor/*</url-pattern>
+    <url-pattern>/js/csjsv3/*</url-pattern>
+    <url-pattern>/warehouse/cloudres/*</url-pattern>
+    <url-pattern>/warehouse/cache/*</url-pattern>
+    <url-pattern>/WW_verify_cuQ2qbllN0w7ILpB.txt</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>allServlet</servlet-name>
+    <servlet-class>com.csaui5.handler.AllServlet</servlet-class>
+  </servlet>
+  
+  <!-- 
+  <servlet-mapping>
+    <servlet-name>Info_SiteCtg</servlet-name>
+    <url-pattern>/api/sitectg</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Info_SiteCtg</servlet-name>
+    <servlet-class>com.csaui5.info.SiteCtgServlet</servlet-class>
+  </servlet>
+   -->
+  
+  <session-config>
+    <session-timeout>180</session-timeout>
+  </session-config>
+</web-app>

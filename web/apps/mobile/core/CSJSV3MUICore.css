@@ -1,0 +1,56 @@
+/*用于解决IOS版的iframe滚动问题*/
+.scroll-box {
+  width: 100%;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+}
+
+.CSJSV3MUIView {
+	display: flex;
+	flex-direction: column;
+}
+
+.CSJSV3MUIScrollView {
+	/*overflow:auto;*/
+}
+
+.CSJSV3MUITabBar {
+	border-bottom:1px solid silver;
+}
+
+.CSJSV3MUITabBar .TabHeadCell {
+	flex-grow:1;
+	line-height:50px;
+	text-align:center;
+}
+
+.CSJSV3MUITabBar .TabHeadCellSelected {
+	color:blue;
+	border-bottom:3px solid blue;
+}
+
+
+.CSJSV3MUIBottomBar {
+	border-top:1px solid silver;
+	background-color:#F8F9F9;
+	height: 68px;
+}
+
+.CSJSV3MUIBottomBar .Cell {
+	flex-grow:1;
+	text-align:center;
+}
+
+.InputFieldRow1 {
+	display: flex;
+	flex-direction: row;
+}
+.InputFieldRow1 .FieldLabel {
+	line-height: 28px;
+}
+
+.NoListDataTip {
+	line-height: 60px;
+	color:gray;
+}

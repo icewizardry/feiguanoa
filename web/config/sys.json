@@ -1,0 +1,5 @@
+{
+	"rootUrl": "http://oa.ovinfo.com:8080/feiguanoa/",
+	"cloudResUrl": "http://yun.sh-service.com/res/B919F556/Handler.ashx",
+	"noLogConMatch": [".*cmd[=]sys_countRemind.*",".*cmd[=]csoc_getUpdatedSessionIds.*"]
+}

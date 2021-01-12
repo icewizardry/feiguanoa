@@ -1,0 +1,19 @@
+
+body {
+	background-color:#F2F3F4;
+}
+
+.InputFieldRow {
+	background-color:white;
+	border-top: 1px solid #E5E7E9;
+	border-bottom: 1px solid #E5E7E9;
+	padding-top:12px;
+	padding-bottom:12px;
+}
+.FieldLabel {
+	color:black;
+	margin-left:16px;
+}
+
+.SplitRow {
+}

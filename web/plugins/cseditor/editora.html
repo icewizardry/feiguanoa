@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="?cmd=sys_101svc_getjs&tgt=jquery-1.x.x.min.js,jquery.nicescroll.js"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js" type="text/javascript"></script>
+    <link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet" type="text/css" />
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3UIEditorA.js" type="text/javascript"></script>
+</head>
+<body>
+    <!--需要移动到项目中来测试-->
+    <script>
+        var _editor1;
+
+        var _world = new CSJSV3.UI.World({});
+        _world.ready(function (world) {
+            _editor1 = new CSJSV3.UI.EditorA({
+                menuBarItems: [
+                    { key: 'Bold' },
+                    { key: 'Italic' },
+                    { key: 'Underline' }
+                ]
+            });
+            _editor1.init(world);
+
+            $('#div1').append(_editor1.getUICore());
+            _editor1.render();
+        });
+    </script>
+    <div id="div1" style=""></div>
+    <style>
+    </style>
+</body>
+</html>

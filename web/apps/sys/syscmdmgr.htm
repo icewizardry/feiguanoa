@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../../js/jq/jquery-1.x.x.min.js"></script>
+    <script src="../../js/jqui/js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+    <link href="../../js/jqui/css/smoothness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet"
+          type="text/css" />
+    <script src="../../js/jqui/jquery.ui.datepicker-zh-CN.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js" type="text/javascript"></script>
+    <link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet" type="text/css" />
+    <script src="syscmdmgr.js"></script>
+</head>
+<body style="background-color: #EFF3F6;">
+	<fieldset id="div1">
+		<legend>控制</legend>
+		<div style="line-height:38px;">
+			<input type="button" value="刷新" onclick="_mgr.loadData()" />
+		</div>
+	</fieldset>
+	<fieldset id="CEBArea">
+		<legend>指令队列</legend>
+		<div class="BodyArea">
+		</div>
+	</fieldset>
+    <script>
+    	var _mgr;
+    	
+        function autosize() {
+			$('.ActPpdArea').find('.Body').first().height($(window).height() - 92);
+        }
+        
+        function autorefresh() {
+            _mgr.loadData(function() {
+            	setTimeout(function() {
+            		autorefresh();
+            	}, 3000);
+            });
+        }
+
+        var _world = new CSJSV3.UI.World({});
+
+        _world.ready(function (world) {
+            _mgr = new CSJSV3.AUI.SysCmdMgr({});
+            _mgr.init(world);
+            _mgr.render();
+            
+            
+            autosize();
+            $(window).resize(function () {
+                autosize();
+            });
+            
+            autorefresh();
+        });
+    </script>
+    <style>
+    	.CEBPanel {
+    		float: left;
+    		border: 1px solid silver;
+    		width: 500px;
+    		margin: 6px;
+    	}
+    	.CEBPanel .TitleRow {
+    		text-align: center;
+    		padding:6px;
+    		font-size:20px;
+    	}
+    	.CEBPanel .CountLabelRow {
+    		text-align: center;
+    		padding:6px;
+    		color: gray;
+    	}
+    	.CEBPanel .StateBar1 {
+    		text-align: center;
+    		padding:6px;
+    		color: gray;
+    	}
+    	.CEBPanel span {
+    		color: black;
+    	}
+    	.QueueAreaHead .Tab {
+    		float:left;width:250px;text-align:center;
+    		border-bottom:1px solid silver;
+			line-height:28px;
+    	}
+    	.QueueArea .ListItem {
+    		text-align:center;
+			line-height:28px;
+    	}
+    </style>
+</body>
+</html>

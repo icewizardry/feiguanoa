@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../../js/jq/jquery-1.x.x.min.js"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js" type="text/javascript"></script>
+    <link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet" type="text/css" />
+	<script src="../com/userselector1.js" type="text/javascript"></script>
+    <style>
+	    .CSJSV3UITabPanel .BodyArea {
+	        box-shadow: none;
+	    }
+    </style>
+</head>
+<body style="background-color: #EFF3F6;">
+	<div><input type="button" value="重置" onclick="test_reset()" /><input type="button" value="获取值" onclick="test_getvalue()" /><input type="button" value="设置值" onclick="test_setvalue()" /></div>
+	<br/>
+	<div>单选：<div id="userSelectorBoxArea" style="display:inline-block;"></div></div>
+	<br/>
+	<div>多选：<div id="usersSelectorBoxArea" style="display:inline-block;"></div></div>
+    <script>
+		function test_reset() {
+			_userSelector1Box.reset();
+			_usersSelector1Box.reset();
+		}
+	
+    	function test_getvalue() {
+    		console.log(_userSelector1Box.value());
+    		console.log(_usersSelector1Box.value());
+    	}
+    	
+    	function test_setvalue() {
+    		_userSelector1Box.value('[{"id":"1","title":"小明"}]');
+    		_usersSelector1Box.value('[{"id":"1","title":"小明"},{"id":"2","title":"小红"}]');
+    	}
+    </script>
+    <script>
+		var _userSelector1Box;
+    	var _usersSelector1Box;
+    	
+        function autosize() {
+
+        }
+
+        var _world = new CSJSV3.UI.World({});
+
+        _world.ready(function (world) {
+        	_userSelector1Box = new CSJSV3.AUI.UsersSelector1Box({
+        		inputStyle:'width:100px;',
+        		showCheckbox:false,
+        		onSelectDone:function(self, selected) {
+        			
+        		}
+        	});
+        	_userSelector1Box.init(world);
+        	_userSelector1Box.render();
+        	$('#userSelectorBoxArea').append(_userSelector1Box.getUICore());
+        	
+        	_usersSelector1Box = new CSJSV3.AUI.UsersSelector1Box({
+        		onCheckDone:function(self, checkeds) {
+        			
+        		}
+        	});
+        	_usersSelector1Box.init(world);
+        	_usersSelector1Box.render();
+        	$('#usersSelectorBoxArea').append(_usersSelector1Box.getUICore());
+        	
+            autosize();
+            $(window).resize(function () {
+                autosize();
+            });
+        });
+    </script>
+</body>
+</html>

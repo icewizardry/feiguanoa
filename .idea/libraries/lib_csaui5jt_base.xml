@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="lib-csaui5jt-base">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../IDEA/com/lib-csaui5jt-base" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../../IDEA/com/lib-csaui5jt-base" recursive="false" />
+  </library>
+</component>

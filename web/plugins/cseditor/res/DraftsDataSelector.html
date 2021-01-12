@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSUICore.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSUIWin.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSUIMouseHoverPanel.js" type="text/javascript"></script>
+    <link href="?cmd=sys_101svc_getjs&tgt=CSUIMouseHoverPanel.css" rel="stylesheet" type="text/css" />
+    <script src="?cmd=sys_101svc_getjs&tgt=CSUIDataGrid.js" type="text/javascript"></script>
+    <link href="?cmd=sys_101svc_getjs&tgt=CSUIDataGrid.css" rel="stylesheet" type="text/css" />
+    <link href="editorCon.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div style="float:left;">
+            <div id="cs_ui_list_container"></div>
+            <div style="text-align:center;"><button onclick="restoreItem()" style="padding:12px;padding-left:30px;padding-right:30px;">还原选中项</button></div>
+        </div>
+        <div style="float:left;width:10px;">&nbsp;</div>
+        <div id="showArea" style="float:left;overflow:auto;"></div>
+    </div>
+    <script>
+        function autoSize() {
+            window.dataGrid1.setHeight($(window).height() - 8 - 60);
+            $('#showArea').height($(window).height() - 8);
+
+            $('#cs_ui_list_container').width(($(window) - 10) / 5 * 2);
+            $('#showArea').width($(window) - 10 - $('#cs_ui_list_container').width());
+        }
+
+        function restoreItem() {
+            var selectedItem = window.dataGrid1.getSelectedItem();
+            if (selectedItem == null) {
+                csui.alert('请选择一项');
+            }
+            else {
+                if (window.callback != null) {
+                    window.callback(selectedItem);
+                }
+            }
+        }
+
+        function createDataGrid2(renderTo) {
+            var t = new CSUIDataGrid({
+                renderTo: renderTo,
+                allowPager: false,
+                allowCancelSeleced: true,
+                allowMultiSelected: false,
+                overflowTriggerPositionType: 'position',
+                onSelectedChanged: function (self, dc, ui, selected) {
+                    $('#showArea').html(dc.content);
+                },
+                onLoadDataFunc: function (self, data, r) {
+                    autoSize();
+                },
+                columns: [
+                        //{
+                        //    title: '编号',
+                        //    style: 'min-width:200px;text-align:center;',
+                        //    tpl_func: function (vals) {
+                        //        return vals.name;
+                        //    }
+                        //},
+                        {
+                            title: '创建时间',
+                            style: 'min-width:200px;',
+                            tpl_func: function (vals) {
+                                return csui.toDateTimeStr(vals.crttime);
+                            }
+                        },
+                        {
+                            title: '内容',
+                            style: 'width:300px;',
+                            tpl_func: function (vals) {
+                                return csui.clearHTML(vals.content).substr(0, 80);
+                            }
+                        }
+                ],
+                style: 'width:100%;'
+            });
+            t.init();
+
+            return t;
+        }
+
+        function loadData() {
+            var topObj = csui.getWebTopObj();
+            var r = eval('(' + topObj.CSSuperShell.ReqByCmd('callClient_GetDataFromUserStorageAll', { key: 'cs_editor_drafts', fmt: 'html' }) + ')');
+            if (r.success == false) {
+                csui.error(r.msg);
+            }
+            else {
+                window.dataGrid1.setData(r.data);
+            }
+        }
+
+        window.dataGrid1 = createDataGrid2('#cs_ui_list_container');
+
+        loadData();
+        autoSize();
+        $(window).resize(function () {
+            autoSize();
+        });
+    </script>
+</body>
+</html>

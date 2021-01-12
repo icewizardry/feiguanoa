@@ -1,0 +1,21 @@
+﻿body
+{
+    font: 12px/150% Arial,Verdana, "\5b8b\4f53";
+    margin: 0px;
+    padding: 0px;
+    padding-left:6px;
+    font-size: 13px;
+    line-height: 24px;
+    overflow-x: auto;
+    overflow-y: auto;
+    word-wrap: break-word;
+    word-break: normal;
+    word-break: break-all;
+}
+
+p
+{
+    line-height: 24px;
+    margin: 0px;
+    padding: 0px;
+}

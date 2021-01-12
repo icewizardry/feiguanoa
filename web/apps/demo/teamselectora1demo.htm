@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../../js/jq/jquery-1.x.x.min.js"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="?cmd=sys_101svc_getjs&tgt=CSJSV3Core.js,CSJSV3UICore.js,CSJSV3AUICore.js" type="text/javascript"></script>
+    <link href="?cmd=sys_101svc_getjs&tgt=CSJSV3UICore.css" rel="stylesheet" type="text/css" />
+    <style>
+	    .CSJSV3UITabPanel .BodyArea {
+	        box-shadow: none;
+	    }
+    </style>
+</head>
+<body style="background-color: #EFF3F6;">
+	<div><input type="button" value="重置" onclick="test_reset()" /><input type="button" value="获取值" onclick="test_getvalue()" /><input type="button" value="设置值" onclick="test_setvalue()" /></div>
+	<br/>
+	<div>团队：<div id="teamSelectorBoxArea" style="display:inline-block;"></div></div>
+    <script>
+		function test_reset() {
+			_teamSelector1.reset();
+		}
+	
+    	function test_getvalue() {
+    		console.log(_teamSelector1.text());
+    		console.log(_teamSelector1.value());
+    	}
+    	
+    	function test_setvalue() {
+    		_teamSelector1.text('哈哈哈');
+    		_teamSelector1.value('1111');
+    	}
+    </script>
+    <script>
+		var _teamSelector1;
+    	
+        function autosize() {
+
+        }
+
+        var _world = new CSJSV3.UI.World({});
+
+        _world.ready(function (world) {
+        	_teamSelector1 = new CSJSV3.AUI.TeamSelectorA1({});
+        	_teamSelector1.init(world);
+        	_teamSelector1.render();
+        	$('#teamSelectorBoxArea').append(_teamSelector1.getUICore());
+        	
+            autosize();
+            $(window).resize(function () {
+                autosize();
+            });
+        });
+    </script>
+</body>
+</html>
