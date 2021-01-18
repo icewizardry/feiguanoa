@@ -729,7 +729,7 @@ CSJSV3.AUI.HomeArea8 = function(cfg) {
 	var _da;
 
 	{
-		_uiCore = $('<div class="CSJSV3UIHomeArea" style="text-align:center;line-height:50px;background-color:#012da7;color:white;font-size:13px;">版权所有：上海市废弃物管理处&emsp;&emsp;&emsp;&emsp;&emsp;服务热线：400-601-8522&emsp;&emsp;&emsp;&emsp;&emsp;技术支持：创正信息化</div>');
+		_uiCore = $('<div class="CSJSV3UIHomeArea" style="text-align:center;line-height:50px;background-color:#012da7;color:white;font-size:13px;">版权所有：上海市资源利用和垃圾分类管理事务中心&emsp;&emsp;&emsp;&emsp;&emsp;服务热线：400-601-8522&emsp;&emsp;&emsp;&emsp;&emsp;技术支持：创正信息化</div>');
 		//&emsp;&emsp;&emsp;&emsp;&emsp;<a href="http://10.85.31.137" target="_blank" style="color:white;">市局OA系统</a>
 		cfg.uiCore = _uiCore;
 		_da = new CSJSV3.AUI.DataAgent({});
