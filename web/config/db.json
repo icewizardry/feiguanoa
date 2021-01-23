@@ -1,8 +1,8 @@
 {
 	"dbWebSvcSvr": { "un": "admin", "pwd": "sfge2341daf" },
 	"dbCons": [
-		{ "name": "sqlite1", "dbType": "sqlite", "driver": "org.sqlite.JDBC", "url": "jdbc:sqlite:D:\\CSWorkspace\\CSFactory\\Idea\\feiguanoa\\feiguanoa.db", "un": "", "pwd": "" },
-		//{ "name": "websvc1", "dbType": "websvc", "url": "http://oa.ovinfo.com:8080/feiguanoa", "un": "admin", "pwd": "sfge2341daf", "fmt": "003" },
+//		{ "name": "sqlite1", "dbType": "sqlite", "driver": "org.sqlite.JDBC", "url": "jdbc:sqlite:D:\\CSWorkspace\\CSFactory\\Idea\\feiguanoa\\feiguanoa.db", "un": "", "pwd": "" },
+		{ "name": "websvc1", "dbType": "websvc", "url": "http://oa.ovinfo.com:8080/feiguanoa", "un": "admin", "pwd": "sfge2341daf", "fmt": "003" },
 		{ "name": "kqjdb1", "dbType": "mssqlserver", "driver": "com.microsoft.sqlserver.jdbc.SQLServerDriver", "url": "jdbc:sqlserver://web.ovinfo.com:3213;DatabaseName=feiguanchu_mjkqnew;", "un": "feiguanchu", "pwd": "feiguanchu1127" },
 		{ "name": "kqjdb1-bak", "dbType": "mssqlserver", "driver": "com.microsoft.sqlserver.jdbc.SQLServerDriver", "url": "jdbc:sqlserver://web.ovinfo.com:3213;DatabaseName=feiguanchu_mjkq;", "un": "feiguanchu", "pwd": "feiguanchu1127" },
 		{ "name": "shentong1", "dbType": "shentong", "driver": "com.oscar.Driver", "url": "jdbc:oscar://localhost:2003/CSAUI3", "un": "SYSDBA", "pwd": "szoscar55" }

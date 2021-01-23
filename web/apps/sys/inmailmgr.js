@@ -86,6 +86,30 @@ CSJSV3.AUI.CurrentSubmitForm = function(cfg) {
 			fields : [ {
 				label : '收信人',
 				type : 'custom',
+				name : 'tousersForDisplay',
+				value : '',
+				canEmpty : false,
+				canEmptyFor : '',
+				style : '',
+				body: new CSJSV3.UI.MailUserDisplayBar({}),
+				hide: true
+			} ]
+		}, {
+			fields : [ {
+				label : '抄送人',
+				type : 'custom',
+				name : 'ccusersForDisplay',
+				value : '',
+				canEmpty : false,
+				canEmptyFor : '',
+				style : '',
+				body: new CSJSV3.UI.MailUserDisplayBar({}),
+				hide: true
+			} ]
+		}, {
+			fields : [ {
+				label : '收信人',
+				type : 'custom',
 				name : 'tousers',
 				value : '',
 				canEmpty : false,
@@ -275,6 +299,17 @@ CSJSV3.AUI.CurrentSubmitForm = function(cfg) {
 			} else {
 				_me.reset();
 				_me.data(r.data);
+
+				if (r.data.tousers != null && r.data.tousers != '') {
+					_me.findFieldByName('tousersForDisplay').item().setUsers(JSON.parse(r.data.tousers), r.data.hasreaduserids);
+				}
+				_me.findFieldByName('tousersForDisplay').show();
+				_me.findFieldByName('tousers').hide();
+				if (r.data.ccusers != null && r.data.ccusers != '') {
+					_me.findFieldByName('ccusersForDisplay').item().setUsers(JSON.parse(r.data.ccusers), r.data.hasreaduserids);
+				}
+				_me.findFieldByName('ccusersForDisplay').show();
+				_me.findFieldByName('ccusers').hide();
 				
 				if(r.data.flow == '0') {
 					for(var i=0;i<_me.fields().length;i++) {
