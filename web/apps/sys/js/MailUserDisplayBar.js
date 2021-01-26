@@ -55,6 +55,10 @@ CSJSV3.UI.MailUserDisplayBar = function(cfg) {
         _uiCore.append('<div style="clear: both;"></div>');
     };
 
+    this.clear = function() {
+        _uiCore.children().remove();
+    };
+
     // this.setHasReadByUserIdsStr = function (userIdsStr) {
     //     _uiCore.children().each(function (i, n) {
     //         console.log(n);

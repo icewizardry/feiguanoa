@@ -257,6 +257,13 @@ CSJSV3.AUI.CurrentSubmitForm = function(cfg) {
 		_me.showBtnByClass('SaveBtn');
 		_me.showBtnByClass('SubmitBtn');
 		_me.showBtnByClass('CancelBtn');
+
+		_me.findFieldByName('tousersForDisplay').hide();
+		_me.findFieldByName('tousersForDisplay').item().clear();
+		_me.findFieldByName('tousers').show();
+		_me.findFieldByName('ccusersForDisplay').hide();
+		_me.findFieldByName('ccusersForDisplay').item().clear();
+		_me.findFieldByName('ccusers').show();
 		
 		for(var i=0;i<_me.fields().length;i++) {
 			_me.fields()[i].readonly(false);
@@ -300,11 +307,14 @@ CSJSV3.AUI.CurrentSubmitForm = function(cfg) {
 				_me.reset();
 				_me.data(r.data);
 
+				_me.findFieldByName('tousersForDisplay').item().clear();
 				if (r.data.tousers != null && r.data.tousers != '') {
 					_me.findFieldByName('tousersForDisplay').item().setUsers(JSON.parse(r.data.tousers), r.data.hasreaduserids);
 				}
 				_me.findFieldByName('tousersForDisplay').show();
 				_me.findFieldByName('tousers').hide();
+
+				_me.findFieldByName('ccusersForDisplay').item().clear();
 				if (r.data.ccusers != null && r.data.ccusers != '') {
 					_me.findFieldByName('ccusersForDisplay').item().setUsers(JSON.parse(r.data.ccusers), r.data.hasreaduserids);
 				}
