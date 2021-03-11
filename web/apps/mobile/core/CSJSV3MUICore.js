@@ -583,7 +583,11 @@ CSJSV3.MUI.QYWXUserMgr = function(cfg) {
 	this.ready0 = function (func) {
 		_me.isLogin(function (r) {
 			if (r.data != true) {
-				_me.world().showErrorMsg('请先登录');
+				if (r.msg != null && r.msg != '') {
+					_me.world().showErrorMsg(r.msg);
+				} else {
+					_me.world().showErrorMsg('请先登录');
+				}
 			}
 			else {
 				if (func != null) {
